@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מצפן חינוך 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;600&display=swap">
+<style>
+/* Layout: one narrow column, like a ballot card; questions one at a time, results as a ranked ledger with sources underneath */
+:root {
+  --bg: #e9eef3;
+  --surface: #f7f9fb;
+  --ink: #1b2836;
+  --muted: #5a6a7c;
+  --line: #c6d0db;
+  --accent: #3b5778;
+  --accent-soft: #d8e2ec;
+  --accent-ink: #ffffff;
+  --pos: #3f7a6e;
+  --neg: #9a5260;
+  --mid: #8a6d3b;
+  --font-display: "Frank Ruhl Libre", "Times New Roman", serif;
+  --font-body: "IBM Plex Sans Hebrew", "Arial Hebrew", Arial, sans-serif;
+  --step-0: 1rem;
+  --step-1: 1.2rem;
+  --step-2: 1.55rem;
+  --step-3: 2.2rem;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121a23; --surface: #1a2531; --ink: #e1e8ef; --muted: #93a3b5; --line: #2d3c4c;
+    --accent: #8eabcb; --accent-soft: #233548; --accent-ink: #0f1720;
+    --pos: #7fb8aa; --neg: #d2909c; --mid: #cfae74;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121a23; --surface: #1a2531; --ink: #e1e8ef; --muted: #93a3b5; --line: #2d3c4c;
+  --accent: #8eabcb; --accent-soft: #233548; --accent-ink: #0f1720;
+  --pos: #7fb8aa; --neg: #d2909c; --mid: #cfae74;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+}
+.app {
+  max-width: 760px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 56px;
+  display: grid;
+  gap: 24px;
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.2; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: var(--accent); }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.masthead { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); background: none; border: 0; padding: 0; }
+.brand svg { width: 34px; height: 34px; flex: none; }
+.brand span { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; }
+.eyebrow { font-size: .82rem; color: var(--muted); letter-spacing: .02em; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+
+/* Intro */
+.intro h1 { font-size: var(--step-3); }
+.intro .lede { font-size: var(--step-1); color: var(--muted); max-width: 60ch; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 0; margin: 0; list-style: none; }
+.facts li { display: grid; }
+.facts b { font-family: var(--font-display); font-size: var(--step-2); font-variant-numeric: tabular-nums; }
+.facts small { color: var(--muted); font-size: .85rem; }
+.note { font-size: .9rem; color: var(--muted); border-inline-start: 3px solid var(--line); padding-inline-start: 12px; max-width: 65ch; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+.btn {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+}
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn.quiet { border-color: transparent; background: transparent; color: var(--muted); padding-inline: 8px; }
+.btn:disabled { opacity: .45; cursor: default; }
+
+/* Progress */
+.progress { display: grid; gap: 8px; }
+.progress-top { display: flex; justify-content: space-between; gap: 12px; font-size: .9rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ticks { display: grid; grid-template-columns: repeat(25, 1fr); gap: 3px; }
+.ticks button { height: 8px; border: 0; padding: 0; border-radius: 2px; background: var(--line); }
+.ticks button.done { background: var(--accent); opacity: .55; }
+.ticks button.skip { background: var(--muted); opacity: .35; }
+.ticks button.current { background: var(--accent); opacity: 1; }
+
+/* Question */
+.q-topic { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.q-topic .id { font-variant-numeric: tabular-nums; font-size: .85rem; color: var(--muted); }
+.q-topic .tag { font-size: .85rem; font-weight: 600; color: var(--accent); letter-spacing: .02em; }
+.q-text { font-size: var(--step-2); }
+.likert { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.likert button {
+  display: grid; gap: 4px; justify-items: center; text-align: center;
+  padding: 12px 6px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg);
+  font-size: .9rem; line-height: 1.3;
+}
+.likert button b { font-family: var(--font-display); font-size: var(--step-1); font-variant-numeric: tabular-nums; }
+.likert button[aria-pressed="true"], .mc button[aria-pressed="true"] {
+  border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent);
+}
+.mc { display: grid; gap: 8px; }
+.mc button {
+  display: grid; grid-template-columns: 2rem 1fr; gap: 10px; align-items: start; text-align: start;
+  padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg);
+}
+.mc .letter { font-family: var(--font-display); font-weight: 700; color: var(--accent); font-size: var(--step-1); line-height: 1.2; }
+.q-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 16px; }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: .92rem; color: var(--muted); cursor: pointer; }
+.toggle input { width: 18px; height: 18px; accent-color: var(--accent); }
+
+/* Results */
+.res-head { display: grid; gap: 8px; }
+.res-head h1 { font-size: var(--step-3); }
+.ledger { display: grid; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+.row { border-bottom: 1px solid var(--line); }
+.row:last-child { border-bottom: 0; }
+.row > button {
+  width: 100%; border: 0; background: transparent; text-align: start;
+  display: grid; grid-template-columns: 2.2rem minmax(0, 1fr) auto; gap: 4px 14px; align-items: center;
+  padding: 14px 18px;
+}
+.rank { font-family: var(--font-display); font-size: var(--step-1); color: var(--muted); font-variant-numeric: tabular-nums; }
+.pname { font-weight: 600; font-size: var(--step-1); }
+.pct { font-family: var(--font-display); font-size: var(--step-2); font-variant-numeric: tabular-nums; font-weight: 700; }
+.bar { grid-column: 2 / 4; height: 6px; border-radius: 3px; background: var(--accent-soft); overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+.coverage { grid-column: 2 / 4; font-size: .85rem; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.chip { display: inline-block; font-size: .78rem; font-weight: 600; padding: 1px 8px; border-radius: 99px; border: 1px solid currentColor; line-height: 1.6; }
+.chip.low { color: var(--mid); }
+.row.thin .pct, .row.thin .pname { color: var(--muted); }
+.details { padding: 4px 18px 18px; display: grid; gap: 10px; }
+.item { display: grid; gap: 6px; padding: 12px 14px; background: var(--bg); border-radius: 8px; min-width: 0; }
+.item-top { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: .85rem; color: var(--muted); }
+.item-q { font-weight: 500; }
+.cmp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 16px; font-size: .92rem; }
+.cmp dt { font-size: .8rem; color: var(--muted); }
+.cmp dd { margin: 0; }
+.stance-support { color: var(--pos); font-weight: 600; }
+.stance-oppose { color: var(--neg); font-weight: 600; }
+.stance-qualified { color: var(--mid); font-weight: 600; }
+.src { font-size: .85rem; color: var(--muted); }
+.match { font-variant-numeric: tabular-nums; font-weight: 600; }
+.section-title { font-size: var(--step-1); }
+.method { display: grid; gap: 10px; font-size: .92rem; color: var(--muted); }
+.method ul { margin: 0; padding-inline-start: 1.2em; display: grid; gap: 4px; }
+.status { color: var(--muted); }
+
+@media (max-width: 560px) {
+  .card { padding: 18px; }
+  .likert { grid-template-columns: 1fr; }
+  .likert button { grid-template-columns: 2rem 1fr; justify-items: start; text-align: start; align-items: center; }
+  .cmp { grid-template-columns: 1fr; }
+  .ticks { gap: 2px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .bar i { transition: width .5s ease; }
+  .likert button, .mc button { transition: background-color .15s, border-color .15s; }
+}
+</style>
+</head>
+<body>
+<div class="app" dir="rtl" lang="he">
+  <header class="masthead">
+    <button class="brand" id="home" type="button" aria-label="חזרה לפתיחה">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" fill="none" stroke="var(--accent)" stroke-width="2"></circle>
+        <circle cx="20" cy="20" r="13" fill="none" stroke="var(--line)" stroke-width="1"></circle>
+        <path d="M20 6 L24 20 L20 34 L16 20 Z" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1"></path>
+        <path d="M20 6 L24 20 L16 20 Z" fill="var(--accent)"></path>
+      </svg>
+      <span>מצפן חינוך</span>
+    </button>
+    <span class="eyebrow" id="meta-line">בחירות לכנסת · 27.10.2026</span>
+  </header>
+  <main id="view"><p class="status">טוען את השאלון…</p></main>
+</div>
+<script>
+(function () {
+  "use strict";
+  const STORE = "edu-compass-2026";
+  const LIKERT_PARTY = { support: 5, oppose: 1, qualified: 4 };
+  const STANCE_LABEL = { support: "תומכת", oppose: "מתנגדת", qualified: "תמיכה מסויגת" };
+  const GRADE_LABEL = { A: "מצע רשמי", B: "דיווח או מקור משני", C: "מסמך קודם" };
+  const MIN_COMPARED = 5;
+
+  const view = document.getElementById("view");
+  let data = null, qIndex = {}, srcIndex = {};
+  let state = { screen: "intro", i: 0, answers: {}, important: {}, open: null };
+
+  function load() {
+    try { const s = JSON.parse(localStorage.getItem(STORE) || "null"); if (s && s.answers) state = Object.assign(state, s, { open: null }); } catch (e) {}
+  }
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify({ screen: state.screen, i: state.i, answers: state.answers, important: state.important })); } catch (e) {}
+  }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+  function answeredCount() {
+    return Object.values(state.answers).filter(a => a != null && a !== "skip").length;
+  }
+
+  function go(screen, i) {
+    state.screen = screen;
+    if (i != null) state.i = i;
+    save();
+    render();
+    window.scrollTo({ top: 0 });
+  }
+
+  function render() {
+    if (state.screen === "quiz") renderQuiz();
+    else if (state.screen === "results") renderResults();
+    else renderIntro();
+  }
+
+  function renderIntro() {
+    const m = data.meta, n = answeredCount();
+    const docCount = data.position_matrix.filter(r => r.status === "documented").length;
+    view.innerHTML = `
+      <section class="card intro">
+        <span class="eyebrow">טיוטה · גרסה ${esc(m.version.replace("draft_", ""))}</span>
+        <h1>איפה אתם עומדים במדיניות החינוך?</h1>
+        <p class="lede">25 שאלות על ליבה, מימון, מורים, גיל רך וזהות. בסוף תראו אילו מפלגות קרובות לעמדות שלכם, ועל אילו מקורות מבוססת כל השוואה.</p>
+        <ul class="facts">
+          <li><b>${m.counts.likert}</b><small>שאלות הסכמה (1 עד 5)</small></li>
+          <li><b>${m.counts.multiple_choice}</b><small>שאלות בחירה</small></li>
+          <li><b>${data.parties.length}</b><small>מפלגות</small></li>
+          <li><b>${docCount}</b><small>עמדות מתועדות עם מקור</small></li>
+        </ul>
+        <p class="note">${esc(m.method)}</p>
+        <div class="actions">
+          <button class="btn" id="start" type="button">${n ? "להמשיך מהשאלה " + (state.i + 1) : "להתחיל"}</button>
+          ${n ? `<button class="btn ghost" id="to-results" type="button">לתוצאות (${n} תשובות)</button>
+                 <button class="btn quiet" id="reset" type="button">להתחיל מחדש</button>` : ""}
+        </div>
+      </section>`;
+    document.getElementById("start").onclick = () => go("quiz");
+    if (n) {
+      document.getElementById("to-results").onclick = () => go("results");
+      document.getElementById("reset").onclick = () => { state.answers = {}; state.important = {}; go("quiz", 0); };
+    }
+  }
+
+  function renderQuiz() {
+    const qs = data.questions, q = qs[state.i], a = state.answers[q.id];
+    const scale = data.response_scale.likert;
+    const ticks = qs.map((x, k) => {
+      const v = state.answers[x.id];
+      const cls = k === state.i ? "current" : v === "skip" ? "skip" : v != null ? "done" : "";
+      return `<button type="button" class="${cls}" data-go="${k}" aria-label="שאלה ${k + 1}: ${esc(x.topic)}"></button>`;
+    }).join("");
+    let choices;
+    if (q.type === "likert") {
+      choices = `<div class="likert" role="group" aria-label="מידת הסכמה">` +
+        [1, 2, 3, 4, 5].map(v => `<button type="button" data-a="${v}" aria-pressed="${a === v}"><b>${v}</b>${esc(scale[v])}</button>`).join("") +
+        `</div>`;
+    } else {
+      choices = `<div class="mc" role="group" aria-label="אפשרויות">` +
+        Object.entries(q.options).map(([k, t]) => `<button type="button" data-a="${k}" aria-pressed="${a === k}"><span class="letter">${k}</span><span>${esc(t)}</span></button>`).join("") +
+        `</div>`;
+    }
+    view.innerHTML = `
+      <section class="card">
+        <div class="progress">
+          <div class="progress-top"><span>שאלה ${state.i + 1} מתוך ${qs.length}</span><span>${answeredCount()} תשובות</span></div>
+          <div class="ticks">${ticks}</div>
+        </div>
+        <div class="q-topic"><span class="id">${esc(q.id)}</span><span class="tag">${esc(q.topic)}</span></div>
+        <h2 class="q-text">${esc(q.text)}</h2>
+        ${choices}
+        <div class="q-foot">
+          <label class="toggle"><input type="checkbox" id="imp" ${state.important[q.id] ? "checked" : ""}> הנושא חשוב לי במיוחד (משקל כפול)</label>
+          <div class="actions">
+            <button class="btn quiet" id="prev" type="button" ${state.i === 0 ? "disabled" : ""}>הקודמת</button>
+            <button class="btn ghost" id="skip" type="button">${esc(scale.skip)}</button>
+            ${state.i === qs.length - 1 ? `<button class="btn" id="finish" type="button">לתוצאות</button>` : ""}
+          </div>
+        </div>
+      </section>`;
+    view.querySelectorAll("[data-a]").forEach(b => b.onclick = () => {
+      const v = q.type === "likert" ? Number(b.dataset.a) : b.dataset.a;
+      answer(v);
+    });
+    view.querySelectorAll("[data-go]").forEach(b => b.onclick = () => go("quiz", Number(b.dataset.go)));
+    document.getElementById("imp").onchange = e => { state.important[q.id] = e.target.checked; save(); };
+    document.getElementById("prev").onclick = () => state.i > 0 && go("quiz", state.i - 1);
+    document.getElementById("skip").onclick = () => answer("skip");
+    const fin = document.getElementById("finish");
+    if (fin) fin.onclick = () => go("results");
+  }
+
+  function answer(v) {
+    const q = data.questions[state.i];
+    state.answers[q.id] = v;
+    if (state.i < data.questions.length - 1) go("quiz", state.i + 1);
+    else go("results");
+  }
+
+  function scoreParties() {
+    const userAnswered = data.questions.filter(q => { const a = state.answers[q.id]; return a != null && a !== "skip"; });
+    return data.parties.map(p => {
+      let sum = 0, weight = 0;
+      const items = [];
+      for (const q of userAnswered) {
+        const row = data.position_matrix.find(r => r.question_id === q.id && r.party_id === p.id);
+        if (!row || row.status !== "documented" || row.position == null) continue;
+        const a = state.answers[q.id];
+        const w = (q.weight || 1) * (state.important[q.id] ? 2 : 1);
+        const s = q.type === "likert"
+          ? 1 - Math.abs(a - LIKERT_PARTY[row.position]) / 4
+          : (a === row.position ? 1 : 0);
+        sum += s * w; weight += w;
+        items.push({ q, row, a, s });
+      }
+      return { party: p, pct: weight ? sum / weight : null, compared: items.length, of: userAnswered.length, items };
+    }).sort((x, y) => {
+      const xt = x.compared < MIN_COMPARED, yt = y.compared < MIN_COMPARED;
+      if (xt !== yt) return xt ? 1 : -1;
+      if (x.pct == null || y.pct == null) return (y.pct == null) - (x.pct == null) || y.compared - x.compared;
+      return y.pct - x.pct || y.compared - x.compared;
+    });
+  }
+
+  function userLabel(q, a) {
+    return q.type === "likert" ? `${a} · ${data.response_scale.likert[a]}` : `${a} · ${q.options[a]}`;
+  }
+  function partyLabel(q, row) {
+    if (q.type === "likert") return `<span class="stance-${row.position}">${STANCE_LABEL[row.position]}</span>`;
+    return `${esc(row.position)} · ${esc(q.options[row.position])}`;
+  }
+
+  function renderResults() {
+    const n = answeredCount();
+    if (!n) {
+      view.innerHTML = `<section class="card"><h2>עוד אין תשובות</h2><p>ענו לפחות על כמה שאלות כדי לראות התאמה למפלגות.</p><div class="actions"><button class="btn" id="start" type="button">לשאלון</button></div></section>`;
+      document.getElementById("start").onclick = () => go("quiz", 0);
+      return;
+    }
+    const results = scoreParties();
+    let rank = 0;
+    const rows = results.map(r => {
+      const thin = r.compared < MIN_COMPARED;
+      if (!thin && r.pct != null) rank++;
+      const pct = r.pct == null ? "—" : Math.round(r.pct * 100) + "%";
+      const open = state.open === r.party.id;
+      const details = open ? `<div class="details" id="d-${r.party.id}">` + (r.items.length ? r.items.map(it => {
+        const src = srcIndex[it.row.source_id] || {};
+        return `<div class="item">
+          <div class="item-top"><span>${esc(it.q.id)} · ${esc(it.q.topic)}</span><span class="match">התאמה ${Math.round(it.s * 100)}%</span></div>
+          <p class="item-q">${esc(it.q.text)}</p>
+          <dl class="cmp">
+            <div><dt>התשובה שלכם</dt><dd>${esc(userLabel(it.q, it.a))}</dd></div>
+            <div><dt>עמדת המפלגה</dt><dd>${partyLabel(it.q, it.row)}</dd></div>
+          </dl>
+          ${it.row.explanation ? `<p class="src">${esc(it.row.explanation)}</p>` : ""}
+          <p class="src">מקור ${esc(it.row.source_id)}: <a href="${esc(it.row.source_url)}" target="_blank" rel="noopener">${esc(src.name || it.row.source_url)}</a> · דרגה ${esc(it.row.evidence_grade)} (${GRADE_LABEL[it.row.evidence_grade] || ""})</p>
+        </div>`;
+      }).join("") : `<p class="src">אין עמדה מתועדת של המפלגה באף אחת מהשאלות שעניתם עליהן.</p>`) + `</div>` : "";
+      return `<div class="row ${thin ? "thin" : ""}">
+        <button type="button" data-party="${r.party.id}" aria-expanded="${open}">
+          <span class="rank">${thin || r.pct == null ? "" : rank}</span>
+          <span class="pname">${esc(r.party.name)}</span>
+          <span class="pct">${pct}</span>
+          <span class="bar"><i style="width:${r.pct == null ? 0 : Math.round(r.pct * 100)}%"></i></span>
+          <span class="coverage">הושוו ${r.compared} מתוך ${r.of} תשובות${thin ? ` <span class="chip low">כיסוי נמוך</span>` : ""}</span>
+        </button>
+        ${details}
+      </div>`;
+    }).join("");
+    const conflicts = (data.unscored_conflicts || []).map(c => `<li>${esc(c.party)}, ${esc(c.question_id)}: ${esc(c.note)}</li>`).join("");
+    view.innerHTML = `
+      <section class="res-head">
+        <span class="eyebrow">על סמך ${n} תשובות מתוך ${data.questions.length}</span>
+        <h1>הקרבה שלכם למפלגות</h1>
+        <p class="note">אחוז ההתאמה מחושב רק בשאלות שבהן יש למפלגה עמדה מתועדת עם מקור. מפלגות שהושוו בפחות מ־${MIN_COMPARED} שאלות מופיעות בסוף הרשימה, כי ההשוואה שלהן חלקית מדי. לחצו על מפלגה כדי לראות את ההשוואה ואת המקורות.</p>
+      </section>
+      <section class="ledger" aria-label="דירוג מפלגות">${rows}</section>
+      <div class="actions">
+        <button class="btn ghost" id="edit" type="button">לשנות תשובות</button>
+        <button class="btn quiet" id="reset" type="button">להתחיל מחדש</button>
+      </div>
+      <section class="card method">
+        <h2 class="section-title">איך זה מחושב</h2>
+        <ul>
+          <li>בשאלות הסכמה, תמיכה של מפלגה נחשבת 5, התנגדות 1 ותמיכה מסויגת 4 (קירוב). ההתאמה היא 1 פחות המרחק בין התשובות חלקי 4.</li>
+          <li>בשאלות בחירה, בחירה זהה שווה התאמה מלאה ובחירה אחרת שווה אפס.</li>
+          <li>כשאין למפלגה עמדה מתועדת, השאלה לא נספרת לה. היעדר מידע אינו נחשב עמדה ניטרלית.</li>
+          <li>נושא שסימנתם כחשוב מקבל משקל כפול.</li>
+          ${conflicts ? `<li>לא נוקדו עמדות סותרות בין מרכיבי רשימה: <ul>${conflicts}</ul></li>` : ""}
+        </ul>
+        <p>${esc(data.meta.method)}</p>
+      </section>`;
+    view.querySelectorAll("[data-party]").forEach(b => b.onclick = () => {
+      state.open = state.open === b.dataset.party ? null : b.dataset.party;
+      renderResults();
+      const el = document.querySelector(`[data-party="${b.dataset.party}"]`);
+      if (el) el.focus();
+    });
+    document.getElementById("edit").onclick = () => go("quiz", 0);
+    document.getElementById("reset").onclick = () => { state.answers = {}; state.important = {}; go("intro", 0); };
+  }
+
+  document.addEventListener("keydown", e => {
+    if (state.screen !== "quiz" || !data || e.target.tagName === "INPUT") return;
+    const q = data.questions[state.i];
+    if (q.type === "likert" && /^[1-5]$/.test(e.key)) answer(Number(e.key));
+    else if (q.type !== "likert" && /^[a-dA-D]$/.test(e.key)) answer(e.key.toUpperCase());
+  });
+  document.getElementById("home").onclick = () => go("intro");
+
+  fetch("data/education_compass_2026.json")
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(d => {
+      data = d;
+      d.questions.forEach(q => qIndex[q.id] = q);
+      (d.source_registry || []).forEach(s => srcIndex[s.id] = s);
+      const [y, m, day] = d.meta.election_date.split("-");
+      document.getElementById("meta-line").textContent = `בחירות לכנסת · ${Number(day)}.${Number(m)}.${y}`;
+      load();
+      if (state.i >= d.questions.length) state.i = 0;
+      render();
+    })
+    .catch(() => {
+      view.innerHTML = `<p class="status">לא הצלחנו לטעון את קובץ השאלון (data/education_compass_2026.json). פתחו את הדף דרך שרת אינטרנט ולא ישירות מהקובץ, ונסו שוב.</p>`;
+    });
+})();
+</script>
+</body>
+</html>
