@@ -166,15 +166,22 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .row:last-child { border-bottom: 0; }
 .row > button {
   width: 100%; border: 0; background: transparent; text-align: start;
-  display: grid; grid-template-columns: 2.2rem minmax(0, 1fr) auto; gap: 4px 14px; align-items: center;
+  display: grid; grid-template-columns: 1.6rem 2.75rem minmax(0, 1fr) auto; gap: 4px 12px; align-items: center;
   padding: 14px 18px;
 }
-.rank { font-family: var(--font-display); font-size: var(--step-1); color: var(--sea); font-variant-numeric: tabular-nums; }
+.plogo {
+  grid-row: span 3; width: 2.75rem; height: 2.75rem; border-radius: 50%; overflow: hidden;
+  display: grid; place-items: center; background: var(--surface); border: 1px solid var(--line);
+  font-family: var(--font-display); font-weight: 700; font-size: .95rem; color: var(--accent); letter-spacing: .02em;
+}
+.plogo img { width: 100%; height: 100%; object-fit: contain; background: #fff; }
+.plogo.mono { background: var(--accent-soft); border-color: transparent; }
+.rank { grid-row: span 3; font-family: var(--font-display); font-size: var(--step-1); color: var(--sea); font-variant-numeric: tabular-nums; }
 .pname { font-weight: 600; font-size: var(--step-1); }
 .pct { font-family: var(--font-display); font-size: var(--step-2); font-variant-numeric: tabular-nums; font-weight: 700; }
-.bar { grid-column: 2 / 4; height: 6px; border-radius: 3px; background: var(--accent-soft); overflow: hidden; }
+.bar { grid-column: 3 / 5; height: 6px; border-radius: 3px; background: var(--accent-soft); overflow: hidden; }
 .bar i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
-.coverage { grid-column: 2 / 4; font-size: .85rem; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.coverage { grid-column: 3 / 5; font-size: .85rem; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 .chip { display: inline-block; font-size: .78rem; font-weight: 600; padding: 1px 8px; border-radius: 99px; border: 1px solid currentColor; line-height: 1.6; }
 .chip.low { color: var(--sand); background: var(--sand-soft); border-color: transparent; }
 .row.thin .pct, .row.thin .pname { color: var(--muted); }
@@ -239,7 +246,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   const FROM_HEB = { "א": "A", "ב": "B", "ג": "C", "ד": "D" };
 
   const view = document.getElementById("view");
-  let data = null, qIndex = {}, srcIndex = {};
+  let data = null, qIndex = {}, srcIndex = {}, logos = {};
   let state = { screen: "intro", i: 0, answers: {}, important: {}, open: null };
 
   function load() {
@@ -377,6 +384,17 @@ button { font: inherit; color: inherit; cursor: pointer; }
     });
   }
 
+  function monogram(name) {
+    if (/[״"]/.test(name)) return name;
+    const words = name.split(/[\s–-]+/).filter(Boolean).map(w => w.replace(/[!?.,]/g, "")).map(w => w.length > 3 && w[0] === "ה" ? w.slice(1) : w);
+    return words.slice(0, 2).map(w => w[0]).join("");
+  }
+  function logoHtml(p) {
+    const mono = `<span class="plogo mono" aria-hidden="true">${esc(monogram(p.name))}</span>`;
+    if (!logos[p.id]) return mono;
+    return `<span class="plogo"><img src="${esc(logos[p.id])}" alt="" loading="lazy" data-mono="${esc(monogram(p.name))}"></span>`;
+  }
+
   function userLabel(q, a) {
     return q.type === "likert" ? `${a} · ${data.response_scale.likert[a]}` : `${HEB[a] || a} · ${q.options[a]}`;
   }
@@ -415,6 +433,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
       return `<div class="row ${thin ? "thin" : ""}">
         <button type="button" data-party="${r.party.id}" aria-expanded="${open}">
           <span class="rank">${thin || r.pct == null ? "" : rank}</span>
+          ${logoHtml(r.party)}
           <span class="pname">${esc(r.party.name)}</span>
           <span class="pct">${pct}</span>
           <span class="bar"><i style="width:${r.pct == null ? 0 : Math.round(r.pct * 100)}%"></i></span>
@@ -446,6 +465,11 @@ button { font: inherit; color: inherit; cursor: pointer; }
         </ul>
         <p>${esc(data.meta.method)}</p>
       </section>`;
+    view.querySelectorAll(".plogo img").forEach(img => img.onerror = () => {
+      const span = img.parentElement;
+      span.className = "plogo mono";
+      span.textContent = img.dataset.mono;
+    });
     view.querySelectorAll("[data-party]").forEach(b => b.onclick = () => {
       state.open = state.open === b.dataset.party ? null : b.dataset.party;
       renderResults();
@@ -482,7 +506,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
       const [y, m, day] = d.meta.election_date.split("-");
       document.getElementById("meta-line").textContent = `בחירות לכנסת · ${Number(day)}.${Number(m)}.${y}`;
       load();
-      if (state.i >= d.questions.length) state.i = 0;
+      return fetch("data/party_logos.json").then(r => r.ok ? r.json() : {}).catch(() => ({})).then(l => { logos = (l && l.logos) || {}; });
+    })
+    .then(() => {
+      if (state.i >= data.questions.length) state.i = 0;
       render();
     })
     .catch(() => {
