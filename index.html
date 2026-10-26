@@ -221,9 +221,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .coverage { grid-column: 3 / 5; font-size: .85rem; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 .chip { display: inline-block; font-size: .78rem; font-weight: 600; padding: 1px 8px; border-radius: 99px; border: 1px solid currentColor; line-height: 1.6; }
 .chip.low { color: var(--sand); background: var(--sand-soft); border-color: transparent; }
-.chip.est { color: var(--sea); background: var(--sea-soft); border-color: transparent; }
-.q-topic .part { font-size: .78rem; font-weight: 600; color: var(--sea); background: var(--sea-soft); border-radius: 99px; padding: 0 8px; }
-.res-tools { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; justify-content: space-between; }
 .method details summary { cursor: pointer; color: var(--ink); }
 .row.thin .pct, .row.thin .pname { color: var(--muted); }
 .details { padding: 4px 18px 18px; display: grid; gap: 10px; }
@@ -279,7 +276,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 <script>
 (function () {
   "use strict";
-  const STORE = "edu-compass-2026";
+  const STORE = "edu-compass-2026-v2";
   const STANCE_LABEL = { support: "תומכת", oppose: "מתנגדת", qualified: "תמיכה מסויגת" };
   const GRADE_LABEL = { A: "מצע רשמי", B: "דיווח או מקור משני", C: "מסמך קודם" };
   const MIN_COMPARED = 5;
@@ -308,13 +305,13 @@ button { font: inherit; color: inherit; cursor: pointer; }
   const view = document.getElementById("view");
   let data = null, qIndex = {}, srcIndex = {}, logos = {};
   const Scoring = window.CompassScoring;
-  let state = { screen: "intro", i: 0, answers: {}, important: {}, includeEstimated: true, open: null };
+  let state = { screen: "intro", i: 0, answers: {}, important: {}, open: null };
 
   function load() {
     try { const s = JSON.parse(localStorage.getItem(STORE) || "null"); if (s && s.answers && typeof s.answers === "object") state = Object.assign(state, s, { open: null }); } catch (e) {}
   }
   function save() {
-    try { localStorage.setItem(STORE, JSON.stringify({ screen: state.screen, i: state.i, answers: state.answers, important: state.important, includeEstimated: state.includeEstimated })); } catch (e) {}
+    try { localStorage.setItem(STORE, JSON.stringify({ screen: state.screen, i: state.i, answers: state.answers, important: state.important })); } catch (e) {}
   }
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -339,19 +336,17 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
   function renderIntro() {
     const m = data.meta, n = answeredCount();
-    const docCount = data.position_matrix.filter(r => r.status === "documented").length;
-    const estCount = data.position_matrix.filter(r => r.status === "estimated").length;
+    const posCount = data.position_matrix.filter(r => r.status === "documented" || r.status === "estimated").length;
     view.innerHTML = `
       <section class="card intro">
         <span class="eyebrow">טיוטה · גרסה ${esc(m.version.replace("draft_", ""))}</span>
         <h1>איפה אתם עומדים במדיניות החינוך?</h1>
-        <p class="lede">${data.questions.length} שאלות על ליבה, מימון, מורים, גיל רך וזהות. בסוף תראו אילו מפלגות קרובות לעמדות שלכם, ועל אילו מקורות מבוססת כל השוואה.</p>
+        <p class="lede">${data.questions.length} שאלות על ליבה, מימון, מורים, גיל רך וזהות. בסוף תראו אילו מפלגות קרובות לעמדות שלכם, ומה עמדת כל מפלגה בכל שאלה.</p>
         <ul class="facts">
           <li><b>${m.counts.likert}</b><small>שאלות הסכמה (1 עד 5)</small></li>
           <li><b>${m.counts.multiple_choice}</b><small>שאלות בחירה</small></li>
           <li><b>${data.parties.length}</b><small>מפלגות</small></li>
-          <li><b>${docCount}</b><small>עמדות מתועדות עם מקור</small></li>
-          <li><b>${estCount}</b><small>עמדות בהערכה ללא מקור</small></li>
+          <li><b>${posCount}</b><small>עמדות מפלגה</small></li>
         </ul>
         <div class="topics">${Object.entries(m.themes || {}).map(([t, label]) =>
           `<div class="topic th-${t}">${icon(t)}<span>${esc(label)}</span><b>${data.questions.filter(q => q.theme === t).length}</b></div>`).join("")}</div>
@@ -393,7 +388,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
           <div class="progress-top"><span>שאלה ${state.i + 1} מתוך ${qs.length}</span><span>${answeredCount()} תשובות</span></div>
           <div class="ticks" style="grid-template-columns: repeat(${qs.length}, 1fr)">${ticks}</div>
         </div>
-        <div class="q-topic"><span class="id">${esc(q.id)}</span>${themeChip(q)}${q.section === "extra" ? `<span class="part">שאלה נוספת · שיוך המפלגות בהערכה</span>` : ""}</div>
+        <div class="q-topic">${themeChip(q)}</div>
         <h2 class="q-text">${esc(q.text)}</h2>
         ${choices}
         <div class="q-foot">
@@ -428,7 +423,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
     return Scoring.scoreParties({
       questions: data.questions, parties: data.parties, matrix: data.position_matrix,
       answers: state.answers, important: state.important,
-      includeEstimated: state.includeEstimated, minCompared: MIN_COMPARED,
+      includeEstimated: true, minCompared: MIN_COMPARED,
     });
   }
 
@@ -467,16 +462,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
       const details = open ? `<div class="details" id="d-${r.party.id}">` + (r.items.length ? r.items.map(it => {
         const src = srcIndex[it.row.source_id] || {};
         return `<div class="item">
-          <div class="item-top"><span>${esc(it.q.id)} ${themeChip(it.q)}</span><span class="match">התאמה ${Math.round(it.s * 100)}%</span></div>
+          <div class="item-top"><span>שאלה ${data.questions.indexOf(it.q) + 1} ${themeChip(it.q)}</span><span class="match">התאמה ${Math.round(it.s * 100)}%</span></div>
           <p class="item-q">${esc(it.q.text)}</p>
           <dl class="cmp">
             <div><dt>התשובה שלכם</dt><dd>${esc(userLabel(it.q, it.a))}</dd></div>
             <div><dt>עמדת המפלגה</dt><dd>${partyLabel(it.q, it.row)}</dd></div>
           </dl>
           ${it.row.explanation ? `<p class="src">${esc(it.row.explanation)}</p>` : ""}
-          ${it.row.status === "estimated"
-            ? `<p class="src"><span class="chip est">הערכה ללא מקור</span></p>`
-            : `<p class="src">מקור ${esc(it.row.source_id)}: <a href="${esc(it.row.source_url)}" target="_blank" rel="noopener">${esc(src.name || it.row.source_url)}</a> · דרגה ${esc(it.row.evidence_grade)} (${GRADE_LABEL[it.row.evidence_grade] || ""})</p>`}
+          ${!it.row.source_url ? "" : `<p class="src">מקור ${esc(it.row.source_id)}: <a href="${esc(it.row.source_url)}" target="_blank" rel="noopener">${esc(src.name || it.row.source_url)}</a> · דרגה ${esc(it.row.evidence_grade)} (${GRADE_LABEL[it.row.evidence_grade] || ""})</p>`}
         </div>`;
       }).join("") : `<p class="src">אין למפלגה עמדה באף אחת מהשאלות שעניתם עליהן.</p>`) + `</div>` : "";
       return `<div class="row ${thin ? "thin" : ""}">
@@ -486,7 +479,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
           <span class="pname">${esc(r.party.name)}</span>
           <span class="pct">${pct}</span>
           <span class="bar"><i style="width:${r.pct == null ? 0 : Math.round(r.pct * 100)}%"></i></span>
-          <span class="coverage">הושוו ${r.compared} מתוך ${r.of} תשובות${r.estimated ? ` · ${r.estimated} מהן בהערכה` : ""}${thin ? ` <span class="chip low">כיסוי נמוך</span>` : ""}</span>
+          <span class="coverage">הושוו ${r.compared} מתוך ${r.of} תשובות${thin ? ` <span class="chip low">כיסוי נמוך</span>` : ""}</span>
         </button>
         ${details}
       </div>`;
@@ -498,11 +491,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
       <section class="res-head">
         <span class="eyebrow">על סמך ${n} תשובות מתוך ${data.questions.length}</span>
         <h1>הקרבה שלכם למפלגות</h1>
-        <p class="note">אחוז ההתאמה מחושב רק בשאלות שבהן יש למפלגה עמדה: מתועדת עם מקור, או בהערכה ללא מקור אם המתג למטה פועל. מפלגות שהושוו בפחות מ־${MIN_COMPARED} שאלות מופיעות בסוף הרשימה, כי ההשוואה שלהן חלקית מדי. לחצו על מפלגה כדי לראות את ההשוואה ואת המקורות.</p>
+        <p class="note">אחוז ההתאמה מחושב רק בשאלות שבהן יש למפלגה עמדה. מפלגות שהושוו בפחות מ־${MIN_COMPARED} שאלות מופיעות בסוף הרשימה, כי ההשוואה שלהן חלקית מדי. לחצו על מפלגה כדי לראות את ההשוואה ואת המקורות.</p>
       </section>
-      <div class="res-tools">
-        <label class="toggle"><input type="checkbox" id="inc-est" ${state.includeEstimated ? "checked" : ""}> לכלול עמדות בהערכה ללא מקור (שאלות נוספות)</label>
-      </div>
       <section class="ledger" aria-label="דירוג מפלגות">${rows}</section>
       <div class="actions">
         <button class="btn ghost" id="edit" type="button">לשנות תשובות</button>
@@ -513,9 +503,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
         <ul>
           <li>בשאלות הסכמה, תמיכה של מפלגה נחשבת 5, התנגדות 1 ותמיכה מסויגת 4 (קירוב). ההתאמה היא 1 פחות המרחק בין התשובות חלקי 4.</li>
           <li>בשאלות בחירה, בחירה זהה שווה התאמה מלאה ובחירה אחרת שווה אפס.</li>
-          <li>כשאין למפלגה עמדה מתועדת, השאלה לא נספרת לה. היעדר מידע אינו נחשב עמדה ניטרלית.</li>
+          <li>כשאין למפלגה עמדה, השאלה לא נספרת לה. היעדר מידע אינו נחשב עמדה ניטרלית.</li>
           <li>נושא שסימנתם כחשוב מקבל משקל כפול.</li>
-          <li>בשאלות הנוספות, השיוך למפלגות הוא הערכה ללא קישור למקור. כשאפשרות שויכה לכמה מפלגות, כל אחת מהן מקבלת אותה. כשמפלגה שויכה לכמה אפשרויות, בחירה בכל אחת מהן נחשבת התאמה.</li>
+          <li>כשאפשרות שויכה לכמה מפלגות, כל אחת מהן מקבלת אותה. כשמפלגה שויכה לכמה אפשרויות, בחירה בכל אחת מהן נחשבת התאמה.</li>
+          <li>שאלות שחזרו על אותה הכרעה אוחדו: מכל קבוצה כזו נשארה השאלה שיש בה עמדות של הכי הרבה מפלגות.</li>
           <li>כשמרכיבים של אותה רשימה שויכו לאפשרויות שונות, השאלה לא נספרת לרשימה. כשרק מרכיב אחד שויך, נעשה שימוש בעמדה שלו, וזה מצוין בפירוט.</li>
           ${unscored ? `<li>שמות שאינם מתמודדים ברשימה נפרדת לא נוקדו: ${esc(unscored)}.</li>` : ""}
         </ul>
@@ -533,7 +524,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
       const el = document.querySelector(`[data-party="${b.dataset.party}"]`);
       if (el) el.focus();
     });
-    document.getElementById("inc-est").onchange = e => { state.includeEstimated = e.target.checked; save(); renderResults(); };
     document.getElementById("edit").onclick = () => go("quiz", 0);
     document.getElementById("reset").onclick = () => { state.answers = {}; state.important = {}; go("intro", 0); };
   }

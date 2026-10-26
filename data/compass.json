@@ -5,18 +5,105 @@
     "locale": "he-IL",
     "election_date": "2026-10-27",
     "counts": {
-      "questions": 55,
-      "likert": 15,
-      "multiple_choice": 40,
+      "questions": 30,
+      "likert": 4,
+      "multiple_choice": 26,
       "parties": 13,
-      "documented_party_question_positions": 120,
-      "estimated_party_question_positions": 161
+      "party_question_positions": 169
     },
-    "method": "עמדות משויכות רק עם קישור למקור. null משמעו אין קידוד, לא עמדה נייטרלית. בחירה אמריקאית היא קירוב למצע ולא נוסח רשמי. זהו טיוטת מצפן, לא הכרעה או המלצת הצבעה.",
-    "sections": {
-      "core": "שאלות עם עמדות מתועדות ומקורות",
-      "extra": "שאלות נוספות; השיוך למפלגות הוא הערכה ללא קישור למקור"
-    },
+    "method": "עמדות המפלגות מבוססות על מצעים, דיווחים ושיוך עמדות לשאלות. כשאין למפלגה עמדה בשאלה, השאלה לא נספרת לה ואינה נחשבת עמדה ניטרלית. זהו כלי עזר לחשיבה, לא הכרעה או המלצת הצבעה.",
+    "dropped_overlaps": [
+      {
+        "kept": "Q01",
+        "dropped": [
+          "Q02",
+          "Q20",
+          "X01",
+          "X23"
+        ]
+      },
+      {
+        "kept": "Q05",
+        "dropped": [
+          "Q17",
+          "X06"
+        ]
+      },
+      {
+        "kept": "X02",
+        "dropped": [
+          "Q06"
+        ]
+      },
+      {
+        "kept": "X03",
+        "dropped": [
+          "Q09",
+          "Q10",
+          "Q18"
+        ]
+      },
+      {
+        "kept": "X11",
+        "dropped": [
+          "Q03"
+        ]
+      },
+      {
+        "kept": "Q04",
+        "dropped": [
+          "Q16",
+          "X08",
+          "X22"
+        ]
+      },
+      {
+        "kept": "X26",
+        "dropped": [
+          "Q14"
+        ]
+      },
+      {
+        "kept": "X14",
+        "dropped": [
+          "Q24"
+        ]
+      },
+      {
+        "kept": "X13",
+        "dropped": [
+          "Q08"
+        ]
+      },
+      {
+        "kept": "Q19",
+        "dropped": [
+          "Q11",
+          "Q12",
+          "X04",
+          "X12"
+        ]
+      },
+      {
+        "kept": "X07",
+        "dropped": [
+          "Q13"
+        ]
+      },
+      {
+        "kept": "Q23",
+        "dropped": [
+          "Q07",
+          "X28"
+        ]
+      },
+      {
+        "kept": "Q15",
+        "dropped": [
+          "X25"
+        ]
+      }
+    ],
     "themes": {
       "core": "ליבה וזרמים",
       "gov": "משילות ותקציב",
@@ -155,26 +242,6 @@
       "theme": "core"
     },
     {
-      "id": "Q02",
-      "type": "likert",
-      "topic": "ממלכתי–חרדי",
-      "text": "יש להפסיק את המימון המיוחד לרשתות חינוך בבעלות מפלגות ולהרחיב במקומן את החינוך הממלכתי־חרדי.",
-      "weight": 1,
-      "options": null,
-      "section": "core",
-      "theme": "core"
-    },
-    {
-      "id": "Q03",
-      "type": "likert",
-      "topic": "בחירת הורים",
-      "text": "יש לבטל אזורי רישום לבתי ספר ולאפשר להורים לבחור מוסד, כשהתקציב הציבורי עובר בעקבות התלמיד.",
-      "weight": 1,
-      "options": null,
-      "section": "core",
-      "theme": "gov"
-    },
-    {
       "id": "Q04",
       "type": "likert",
       "topic": "ביזור סמכויות",
@@ -195,96 +262,6 @@
       "theme": "teachers"
     },
     {
-      "id": "Q06",
-      "type": "likert",
-      "topic": "חוזים אישיים",
-      "text": "יש לאפשר לבתי ספר להעסיק מורים גם במסלולי חוזים אישיים, ולא רק בהסכמים הקיבוציים המקובלים.",
-      "weight": 1,
-      "options": null,
-      "section": "core",
-      "theme": "teachers"
-    },
-    {
-      "id": "Q07",
-      "type": "likert",
-      "topic": "תקצוב דיפרנציאלי",
-      "text": "בתי ספר המשרתים אוכלוסיות מוחלשות צריכים לקבל יותר כסף לכל תלמיד מבתי ספר מבוססים.",
-      "weight": 1,
-      "options": null,
-      "section": "core",
-      "theme": "equity"
-    },
-    {
-      "id": "Q08",
-      "type": "likert",
-      "topic": "חינוך מיוחד והכלה",
-      "text": "בחינוך המיוחד, שילוב בבית ספר רגיל צריך להיות ברירת המחדל כשאפשר, אך יש לשמור גם על מסגרות נפרדות איכותיות למי שזקוקים להן.",
-      "weight": 1,
-      "options": null,
-      "section": "core",
-      "theme": "equity"
-    },
-    {
-      "id": "Q09",
-      "type": "likert",
-      "topic": "גיל רך",
-      "text": "המדינה צריכה להבטיח לכל משפחה שתרצה בכך מסגרת חינוכית איכותית, מפוקחת ומסובסדת לגילי לידה עד שלוש.",
-      "weight": 1,
-      "options": null,
-      "section": "core",
-      "theme": "early"
-    },
-    {
-      "id": "Q10",
-      "type": "likert",
-      "topic": "תיעדוף מעונות",
-      "text": "בסבסוד מעונות יש לתת קדימות למשפחות משרתים ולהורים עובדים, גם אם הסבסוד אינו אוניברסלי.",
-      "weight": 1,
-      "options": null,
-      "section": "core",
-      "theme": "early"
-    },
-    {
-      "id": "Q11",
-      "type": "likert",
-      "topic": "חינוך דמוקרטי",
-      "text": "לימודי דמוקרטיה, זכויות אדם, אזרחות וחיים משותפים צריכים להיכלל בליבת הלימודים בכל זרמי החינוך.",
-      "weight": 1,
-      "options": null,
-      "section": "core",
-      "theme": "identity"
-    },
-    {
-      "id": "Q12",
-      "type": "likert",
-      "topic": "זהות יהודית",
-      "text": "לימודי מורשת ישראל וזהות יהודית־לאומית צריכים להיות רכיב מחייב בתוכנית הליבה המשותפת.",
-      "weight": 1,
-      "options": null,
-      "section": "core",
-      "theme": "identity"
-    },
-    {
-      "id": "Q13",
-      "type": "likert",
-      "topic": "חינוך ערבי",
-      "text": "מערכת החינוך הערבית צריכה להיות מוסמכת לעצב בעצמה תכנים המשקפים את השפה, התרבות והזהות הלאומית הערבית־פלסטינית.",
-      "weight": 1,
-      "options": null,
-      "section": "core",
-      "theme": "identity"
-    },
-    {
-      "id": "Q14",
-      "type": "likert",
-      "topic": "הערכה ובגרויות",
-      "text": "יש לצמצם את מספר בחינות הבגרות החיצוניות ולהחליפן בחלקן בעבודות חקר, בתיקי עבודות ובהערכה של מיומנויות.",
-      "weight": 1,
-      "options": null,
-      "section": "core",
-      "theme": "learning"
-    },
-    {
       "id": "Q15",
       "type": "likert",
       "topic": "בינה מלאכותית",
@@ -293,51 +270,6 @@
       "options": null,
       "section": "core",
       "theme": "learning"
-    },
-    {
-      "id": "Q16",
-      "type": "multiple_choice",
-      "topic": "מודל המשילות",
-      "text": "איזה מודל לניהול מערכת החינוך הוא הראוי ביותר?",
-      "weight": 1,
-      "options": {
-        "A": "משרד החינוך קובע ומפעיל את רוב מרכיבי המערכת באופן מרכזי.",
-        "B": "המדינה קובעת ליבה ויעדים, והרשויות ומנהלי בתי הספר מנהלים את הביצוע.",
-        "C": "לזרמי החינוך ולרשתות עצמאות רחבה גם ללא ליבה משותפת אחידה.",
-        "D": "המדינה נותנת שובר תקציבי להורים, שבוחרים בעצמם את מוסד החינוך."
-      },
-      "section": "core",
-      "theme": "gov"
-    },
-    {
-      "id": "Q17",
-      "type": "multiple_choice",
-      "topic": "מודל שכר",
-      "text": "איזה שינוי בהעסקת מורים צריך לקבל עדיפות?",
-      "weight": 1,
-      "options": {
-        "A": "העלאה משמעותית של שכר הבסיס, במיוחד למורים מתחילים.",
-        "B": "תגמול אישי הנקבע לפי איכות וביצועים, עם אפשרות לחוזים אישיים.",
-        "C": "שיפור שכר ותנאים באמצעות הסכמים קיבוציים, בלי שכר המבוסס על דירוג ביצועים אישי.",
-        "D": "יצירת מסלול בחירה חדש של תגמול על איכות לצד המסלול הקיבוצי הקיים."
-      },
-      "section": "core",
-      "theme": "teachers"
-    },
-    {
-      "id": "Q18",
-      "type": "multiple_choice",
-      "topic": "מודל הגיל הרך",
-      "text": "כיצד נכון לסבסד את המסגרות מגיל לידה עד שלוש?",
-      "weight": 1,
-      "options": {
-        "A": "חינוך ציבורי חינם לכל ילד, ללא קשר להכנסה או לתעסוקת ההורים.",
-        "B": "מסגרות ציבוריות ומפוקחות, וסבסוד לפי הכנסה ומצב תעסוקתי.",
-        "C": "הרחבת מסגרות מסובסדות עם קדימות למשפחות משרתים והורים עובדים.",
-        "D": "הגדלת השקעה ופיקוח ושיפור איכות כוח האדם, בלי התחייבות לסבסוד אוניברסלי."
-      },
-      "section": "core",
-      "theme": "early"
     },
     {
       "id": "Q19",
@@ -353,21 +285,6 @@
       },
       "section": "core",
       "theme": "identity"
-    },
-    {
-      "id": "Q20",
-      "type": "multiple_choice",
-      "topic": "החינוך החרדי",
-      "text": "כיצד המדינה צריכה לנהוג במוסדות חרדיים שאינם מלמדים את מלוא הליבה?",
-      "weight": 1,
-      "options": {
-        "A": "לא להעניק מימון ציבורי עד להשלמת מלוא לימודי הליבה.",
-        "B": "לצמצם תקצוב ולבנות מסלול ממשי למעבר לחינוך ממלכתי־חרדי.",
-        "C": "לשמור על עצמאות הרשתות ועל תקצובן, ללא כפיית תכנים חיצוניים.",
-        "D": "להתנות חלק מהמימון בהרחבת הליבה, בלי מעבר מלא לממלכתיות."
-      },
-      "section": "core",
-      "theme": "core"
     },
     {
       "id": "Q21",
@@ -415,21 +332,6 @@
       "theme": "equity"
     },
     {
-      "id": "Q24",
-      "type": "multiple_choice",
-      "topic": "אלימות וחרמות",
-      "text": "מהו הכלי המרכזי לצמצום אלימות וחרמות בבתי הספר?",
-      "weight": 1,
-      "options": {
-        "A": "גיבוי לצוות ולאכיפה ברורה של גבולות, יחד עם הרחבת טיפול רגשי.",
-        "B": "תגבור ייעוץ ופסיכולוגיה, איתור מוקדם ותוכניות מניעה.",
-        "C": "מתן סמכות רחבה למנהל לקבוע צעדי משמעת מקומיים.",
-        "D": "חיזוק הכיתה כקהילה באמצעות דיאלוג ופעילות חברתית מתמשכת."
-      },
-      "section": "core",
-      "theme": "safety"
-    },
-    {
       "id": "Q25",
       "type": "multiple_choice",
       "topic": "השכלה גבוהה והכשרה",
@@ -445,23 +347,7 @@
       "theme": "higher"
     },
     {
-      "id": "Q26",
-      "type": "multiple_choice",
-      "topic": "לימודי ליבה במגזר החרדי",
-      "text": "כיצד יש לטפל בסוגיית לימודי הליבה (מתמטיקה, אנגלית, מדעים) במוסדות החינוך החרדיים?",
-      "weight": 1,
-      "options": {
-        "A": "שלילת תקצוב מוחלטת ממוסדות שאינם מלמדים ליבה מלאה. אין ליבה - אין תקציב.",
-        "B": "הקמה ותמיכה מסיבית בזרם 'ממלכתי-חרדי' המעניק תקצוב מלא בתמורה ללימודי ליבה ופיקוח, תוך שמירה על אורח החיים.",
-        "C": "אוטונומיה חינוכית מלאה למגזר. יש להעניק תקצוב שוויוני ללא התניה בלימודי חול.",
-        "D": "מתן תמריצים כלכליים הדרגתיים למוסדות שישלבו ליבה מרצונם, ללא כפייה."
-      },
-      "section": "extra",
-      "origin_id": 1,
-      "theme": "core"
-    },
-    {
-      "id": "Q27",
+      "id": "X02",
       "type": "multiple_choice",
       "topic": "כוחם של ארגוני המורים",
       "text": "מהי עמדתך לגבי סמכויות ארגון והסתדרות המורים?",
@@ -477,7 +363,7 @@
       "theme": "teachers"
     },
     {
-      "id": "Q28",
+      "id": "X03",
       "type": "multiple_choice",
       "topic": "חינוך חינם לגיל הרך",
       "text": "כיצד יש לממן את החינוך לגילאי לידה עד 3?",
@@ -493,23 +379,7 @@
       "theme": "early"
     },
     {
-      "id": "Q29",
-      "type": "multiple_choice",
-      "topic": "זהות והדתה",
-      "text": "מהו המינון הנכון ללימודי מורשת ויהדות בחינוך הממלכתי (החילוני)?",
-      "weight": 1,
-      "options": {
-        "A": "יש להוציא עמותות דתיות מבתי הספר ולחזק לימודים דמוקרטיים, פלורליסטיים וליברליים.",
-        "B": "יש להגביר משמעותית את לימודי הזהות היהודית, הציונות והמסורת כבסיס קיומי.",
-        "C": "יש לשלב לימודי ציונות לאומית ומורשת בגישה ממלכתית, ללא כפייה דתית אך עם חיבור לשורשים.",
-        "D": "לימודי המסורת בחינוך הממלכתי אינם מענייננו, יש להתמקד בעצמאות החינוך הדתי והחרדי."
-      },
-      "section": "extra",
-      "origin_id": 4,
-      "theme": "identity"
-    },
-    {
-      "id": "Q30",
+      "id": "X05",
       "type": "multiple_choice",
       "topic": "תשלומי הורים",
       "text": "מה עמדתך לגבי גביית תשלומי הורים (עבור טיולים, מסיבות, סל תרבות)?",
@@ -525,23 +395,7 @@
       "theme": "equity"
     },
     {
-      "id": "Q31",
-      "type": "multiple_choice",
-      "topic": "תגמול מורים",
-      "text": "כיצד יש לקבוע את שכרם של המורים במערכת החינוך?",
-      "weight": 1,
-      "options": {
-        "A": "מעבר מלא לשכר דיפרנציאלי על בסיס מצוינות, הישגי התלמידים והערכת המנהל.",
-        "B": "שכר גבוה ומתגמל המבוסס על ותק, יחד עם שיפור תנאי ההעסקה הרוחביים לכולם.",
-        "C": "שילוב בין רכיב ותק מסוים לתמרוץ מורים במקצועות במחסור (מתמטיקה, אנגלית) ובפריפריה.",
-        "D": "מתן תמריצים מיוחדים למורים בחינוך הדתי ולמורים המלמדים ערכי התיישבות וציונות."
-      },
-      "section": "extra",
-      "origin_id": 6,
-      "theme": "teachers"
-    },
-    {
-      "id": "Q32",
+      "id": "X07",
       "type": "multiple_choice",
       "topic": "חינוך במגזר הערבי",
       "text": "כיצד יש לטפל בפערים ובתוכניות הלימוד במערכת החינוך הערבית?",
@@ -557,23 +411,7 @@
       "theme": "identity"
     },
     {
-      "id": "Q33",
-      "type": "multiple_choice",
-      "topic": "אוטונומיה ניהולית",
-      "text": "עד כמה מנהל בית ספר צריך להיות עצמאי מבחינת ניהול תקציב ופיטורי מורים?",
-      "weight": 1,
-      "options": {
-        "A": "אוטונומיה מוחלטת: המנהל יגייס, יפטר ויקבע שכר בדומה למנכ\"ל בחברה פרטית.",
-        "B": "גמישות ניהולית רחבה בפיטורים וקבלת תקציב ישיר, תוך עקיפת הריכוזיות של משרד החינוך.",
-        "C": "העברת סמכויות הדרגתית אך הותרת הפיקוח וההגנה על זכויות המורים בידי המדינה והארגונים.",
-        "D": "התנגדות להפרטה. יש לשמור על מערכת ריכוזית חזקה המבטיחה שוויון ומונעת אפליה."
-      },
-      "section": "extra",
-      "origin_id": 8,
-      "theme": "gov"
-    },
-    {
-      "id": "Q34",
+      "id": "X09",
       "type": "multiple_choice",
       "topic": "חינוך פיננסי",
       "text": "איזה מקצוע חייב להפוך למקצוע חובה לבגרות כבר מחר בבוקר?",
@@ -589,7 +427,7 @@
       "theme": "learning"
     },
     {
-      "id": "Q35",
+      "id": "X10",
       "type": "multiple_choice",
       "topic": "ארוחות חמות",
       "text": "האם המדינה צריכה לספק ארוחה חמה בבתי הספר?",
@@ -605,7 +443,7 @@
       "theme": "equity"
     },
     {
-      "id": "Q36",
+      "id": "X11",
       "type": "multiple_choice",
       "topic": "שיטת השוברים (ואוצ'רים)",
       "text": "האם אתה תומך בשיטת ה'ואוצ'רים', שבה התקציב עובר ישירות להורים כדי שיבחרו באיזה בית ספר לשלם?",
@@ -621,23 +459,7 @@
       "theme": "gov"
     },
     {
-      "id": "Q37",
-      "type": "multiple_choice",
-      "topic": "מעורבות הורים וערכים",
-      "text": "מי צריך להכריע אילו ערכים נלמדים בבית הספר?",
-      "weight": 1,
-      "options": {
-        "A": "משרד החינוך, עליו להתוות קו ציוני-לאומי ברור ולהוציא תכנים אנטי-ציוניים.",
-        "B": "הקהילה וההורים דרך בחירת בתי ספר ייעודיים, כל קהילה לפי ערכיה.",
-        "C": "המדינה צריכה לחנך לממלכתיות, דמוקרטיה וסובלנות כבסיס משותף לכולם.",
-        "D": "משרד החינוך חייב לאכוף קו ממלכתי נוקשה של חובות אזרחיות, ציונות ומשילות."
-      },
-      "section": "extra",
-      "origin_id": 12,
-      "theme": "identity"
-    },
-    {
-      "id": "Q38",
+      "id": "X13",
       "type": "multiple_choice",
       "topic": "חינוך מיוחד ושילוב",
       "text": "איזו גישה נכונה כלפי ילדי החינוך המיוחד?",
@@ -653,7 +475,7 @@
       "theme": "equity"
     },
     {
-      "id": "Q39",
+      "id": "X14",
       "type": "multiple_choice",
       "topic": "אלימות ומשמעת",
       "text": "כיצד יש להתמודד עם בעיות משמעת ואלימות בבתי הספר?",
@@ -669,7 +491,7 @@
       "theme": "safety"
     },
     {
-      "id": "Q40",
+      "id": "X15",
       "type": "multiple_choice",
       "topic": "השכלה גבוהה לחרדים",
       "text": "האם יש לאפשר לימודים בהפרדה מגדרית באקדמיה כדי לשלב חרדים?",
@@ -685,7 +507,7 @@
       "theme": "higher"
     },
     {
-      "id": "Q41",
+      "id": "X16",
       "type": "multiple_choice",
       "topic": "קביעות למורים (טניור)",
       "text": "האם יש לבטל את מוסד הקביעות של המורים במערכת החינוך?",
@@ -701,7 +523,7 @@
       "theme": "teachers"
     },
     {
-      "id": "Q42",
+      "id": "X17",
       "type": "multiple_choice",
       "topic": "הכנה לצה\"ל בתיכונים",
       "text": "מהו מקומו של הצבא במערכת החינוך התיכונית?",
@@ -717,7 +539,7 @@
       "theme": "safety"
     },
     {
-      "id": "Q43",
+      "id": "X18",
       "type": "multiple_choice",
       "topic": "לימודי ערבית",
       "text": "האם יש לחייב לימודי שפה מדוברת ערבית בכל בתי הספר היהודיים?",
@@ -733,7 +555,7 @@
       "theme": "identity"
     },
     {
-      "id": "Q44",
+      "id": "X19",
       "type": "multiple_choice",
       "topic": "מימון תנועות נוער",
       "text": "כיצד צריכה המדינה לתקצב תנועות נוער (צופים, בני עקיבא, שומר הצעיר)?",
@@ -749,7 +571,7 @@
       "theme": "safety"
     },
     {
-      "id": "Q45",
+      "id": "X20",
       "type": "multiple_choice",
       "topic": "חופש ביטוי למורים",
       "text": "האם מותר למורה להביע עמדה פוליטית בכיתה?",
@@ -765,7 +587,7 @@
       "theme": "teachers"
     },
     {
-      "id": "Q46",
+      "id": "X21",
       "type": "multiple_choice",
       "topic": "חינוך מקצועי מול עיוני",
       "text": "לאיזה מסלול לימודים יש להפנות משאבים רבים יותר בתיכון?",
@@ -781,39 +603,7 @@
       "theme": "learning"
     },
     {
-      "id": "Q47",
-      "type": "multiple_choice",
-      "topic": "הסרת חסמים ורגולציה",
-      "text": "כיצד ניתן לפתור את הביורוקרטיה במשרד החינוך?",
-      "weight": 1,
-      "options": {
-        "A": "פירוק משרד החינוך, סגירת המחוזות והעברת כל הסמכויות התקציביות ישירות לרשויות המקומיות ולמנהלים.",
-        "B": "חיזוק הדרג המקצועי במשרד החינוך ומניעת התערבות פוליטית של שרים בתוכניות הלימוד.",
-        "C": "הקמת רשתות חינוך מגזריות נוספות שיתנהלו בעצמאות עם פחות התערבות ממשלתית.",
-        "D": "הדקטורה של פקידים צריכה להיפסק. השר הנבחר צריך לנווט את המדיניות ולקבוע יעדים קשיחים ללא פקידות בולמת."
-      },
-      "section": "extra",
-      "origin_id": 22,
-      "theme": "gov"
-    },
-    {
-      "id": "Q48",
-      "type": "multiple_choice",
-      "topic": "חינוך במגזר החרדי - לימודי אנגלית",
-      "text": "האם יש לחייב רק לימודי אנגלית (ללא מדעים והיסטוריה) במוסדות חרדיים?",
-      "weight": 1,
-      "options": {
-        "A": "אנגלית היא כלי התעסוקה המרכזי. יש לתמרץ ולדרוש לפחות אנגלית ומתמטיקה ברמה בסיסית.",
-        "B": "לא. יש לחייב את כל מקצועות הליבה באופן גורף ללא פשרות, או לשלול תקציב.",
-        "C": "אנו מתנגדים לכל התערבות. מי שירצה ילמד אנגלית באופן פרטי מחוץ לשעות הישיבה.",
-        "D": "הממשלה צריכה לספק קורסי אנגלית מסובסדים למבוגרים לאחר שעות הלימודים, מבלי לכפות על תלמודי התורה."
-      },
-      "section": "extra",
-      "origin_id": 23,
-      "theme": "core"
-    },
-    {
-      "id": "Q49",
+      "id": "X24",
       "type": "multiple_choice",
       "topic": "צפיפות בכיתות",
       "text": "מהו הפתרון הריאלי לבעיית הצפיפות בכיתות?",
@@ -829,23 +619,7 @@
       "theme": "equity"
     },
     {
-      "id": "Q50",
-      "type": "multiple_choice",
-      "topic": "שילוב מסכים וטכנולוגיה",
-      "text": "כיצד צריכה המערכת להתייחס לשימוש בסמארטפונים ומסכים בבתי הספר?",
-      "weight": 1,
-      "options": {
-        "A": "איסור מוחלט של הכנסת סמארטפונים לכותלי בית הספר כדי להחזיר את הריכוז והמשמעת.",
-        "B": "יש לעודד למידה דיגיטלית ושימוש ב-AI באופן אקטיבי, אנו במאה ה-21 ועל המערכת להתאים את עצמה.",
-        "C": "מתן אוטונומיה לכל מנהל בית ספר להחליט על המדיניות המתאימה לקהילה שלו.",
-        "D": "שמירה על החינוך הטהור, עידוד שימוש בטלפונים כשרים בלבד ודחיית תרבות המסכים ההרסנית."
-      },
-      "section": "extra",
-      "origin_id": 25,
-      "theme": "learning"
-    },
-    {
-      "id": "Q51",
+      "id": "X26",
       "type": "multiple_choice",
       "topic": "בחינות הבגרות",
       "text": "מה צריכה להיות המדיניות לגבי בחינות הבגרות המסורתיות?",
@@ -861,7 +635,7 @@
       "theme": "learning"
     },
     {
-      "id": "Q52",
+      "id": "X27",
       "type": "multiple_choice",
       "topic": "שכר לימוד באוניברסיטאות",
       "text": "מה עמדתך לגבי שכר הלימוד בהשכלה הגבוהה?",
@@ -877,23 +651,7 @@
       "theme": "higher"
     },
     {
-      "id": "Q53",
-      "type": "multiple_choice",
-      "topic": "תקצוב מצוינות מול צמצום פערים",
-      "text": "היכן צריך להשקיע את השקל השולי בתקציב החינוך?",
-      "weight": 1,
-      "options": {
-        "A": "בטיפוח המצוינות ובמחוננים - הם הקטר שימשוך את כלכלת ישראל קדימה.",
-        "B": "בסגירת פערים, באוכלוסיות מוחלשות ובחינוך מיוחד, כדי לייצר חברה צודקת ושוויונית.",
-        "C": "בחיזוק החינוך בפריפריה הגיאוגרפית (נגב וגליל) וחיזוק החוסן הלאומי באזורים אלו.",
-        "D": "בהשוואת תנאי המבנים, הבינוי וההצטיידות במגזרים הסובלים מהזנחה (חרדי וערבי)."
-      },
-      "section": "extra",
-      "origin_id": 28,
-      "theme": "equity"
-    },
-    {
-      "id": "Q54",
+      "id": "X29",
       "type": "multiple_choice",
       "topic": "הדתה בתוכניות הלימוד",
       "text": "מה דעתך על פעילות עמותות חיצוניות בבתי הספר הממלכתיים?",
@@ -909,7 +667,7 @@
       "theme": "identity"
     },
     {
-      "id": "Q55",
+      "id": "X30",
       "type": "multiple_choice",
       "topic": "מכינות קדם צבאיות",
       "text": "כיצד יש להתייחס לתקצוב המכינות הקדם צבאיות והשנת שירות?",
@@ -2165,318 +1923,6 @@
       "explanation": ""
     },
     {
-      "question_id": "Q02",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "likert",
-      "position": "qualified",
-      "status": "documented",
-      "source_id": "S01",
-      "source_url": "https://yasharwitheisenkot.com/principles/education/",
-      "evidence_grade": "A",
-      "explanation": "דורשת הצטרפות לממ״ח ומצמצמת תקצוב, לא התחייבה להפסיק את כל המימון"
-    },
-    {
-      "question_id": "Q02",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q02",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S02",
-      "source_url": "https://be-yahad.org.il/plans/education/",
-      "evidence_grade": "A",
-      "explanation": "ממלכתיות במקום רשתות מפלגתיות"
-    },
-    {
-      "question_id": "Q02",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S04",
-      "source_url": "https://democrats.org.il/content/equality-checklist",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q02",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q02",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q02",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q02",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "likert",
-      "position": "oppose",
-      "status": "documented",
-      "source_id": "S08",
-      "source_url": "https://www.ynet.co.il/news/article/h1ajygm00ml",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q02",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "likert",
-      "position": "oppose",
-      "status": "documented",
-      "source_id": "S08",
-      "source_url": "https://www.ynet.co.il/news/article/h1ajygm00ml",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q02",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q02",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q02",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q02",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q03",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q03",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q03",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q03",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q03",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q03",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S05",
-      "source_url": "https://zionutdatit.org.il/hinuch/",
-      "evidence_grade": "A",
-      "explanation": "גם מרכיב זהות תומך בשובר חינוך; ראה S06"
-    },
-    {
-      "question_id": "Q03",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q03",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q03",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q03",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q03",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q03",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q03",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
       "question_id": "Q04",
       "party_id": "yashar",
       "party": "ישר!",
@@ -2789,1410 +2235,6 @@
       "explanation": ""
     },
     {
-      "question_id": "Q06",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S01",
-      "source_url": "https://yasharwitheisenkot.com/principles/education/",
-      "evidence_grade": "A",
-      "explanation": "מסלולים מקבילים מבחירה"
-    },
-    {
-      "question_id": "Q06",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q06",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q06",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q06",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S03",
-      "source_url": "https://beytenu.org.il/party-platform/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q06",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S05",
-      "source_url": "https://zionutdatit.org.il/hinuch/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q06",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q06",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q06",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q06",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q06",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q06",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q06",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q07",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S01",
-      "source_url": "https://yasharwitheisenkot.com/principles/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q07",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q07",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S09",
-      "source_url": "https://www.mako.co.il/news-israel-elections/2026/Article-e06361a0a7031a1026.htm",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q07",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S09",
-      "source_url": "https://www.mako.co.il/news-israel-elections/2026/Article-e06361a0a7031a1026.htm",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q07",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q07",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q07",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S09",
-      "source_url": "https://www.mako.co.il/news-israel-elections/2026/Article-e06361a0a7031a1026.htm",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q07",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q07",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q07",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q07",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q07",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S09",
-      "source_url": "https://www.mako.co.il/news-israel-elections/2026/Article-e06361a0a7031a1026.htm",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q07",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q08",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q08",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q08",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S02",
-      "source_url": "https://be-yahad.org.il/plans/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q08",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q08",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q08",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q08",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q08",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q08",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q08",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q08",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q08",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q08",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q09",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "likert",
-      "position": "qualified",
-      "status": "documented",
-      "source_id": "S01",
-      "source_url": "https://yasharwitheisenkot.com/principles/education/",
-      "evidence_grade": "A",
-      "explanation": "הרחבת סבסוד להורים עובדים ומשרתים ולא התחייבות לזמינות לכל משפחה"
-    },
-    {
-      "question_id": "Q09",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q09",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S02",
-      "source_url": "https://be-yahad.org.il/plans/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q09",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S09",
-      "source_url": "https://www.mako.co.il/news-israel-elections/2026/Article-e06361a0a7031a1026.htm",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q09",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q09",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q09",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S07",
-      "source_url": "https://jointlist.org.il/he/platform/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q09",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q09",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q09",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q09",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q09",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q09",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q10",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S01",
-      "source_url": "https://yasharwitheisenkot.com/principles/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q10",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q10",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S02",
-      "source_url": "https://be-yahad.org.il/plans/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q10",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q10",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q10",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q10",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "likert",
-      "position": "oppose",
-      "status": "documented",
-      "source_id": "S09",
-      "source_url": "https://www.mako.co.il/news-israel-elections/2026/Article-e06361a0a7031a1026.htm",
-      "evidence_grade": "B",
-      "explanation": "הדגשה מפורשת של נגישות ללא תלות בעבודה או שירות"
-    },
-    {
-      "question_id": "Q10",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q10",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q10",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q10",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q10",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q10",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q11",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S01",
-      "source_url": "https://yasharwitheisenkot.com/principles/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q11",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q11",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S02",
-      "source_url": "https://be-yahad.org.il/plans/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q11",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S04",
-      "source_url": "https://democrats.org.il/content/equality-checklist",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q11",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q11",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q11",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S07",
-      "source_url": "https://jointlist.org.il/he/platform/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q11",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q11",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q11",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q11",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q11",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q11",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q12",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S01",
-      "source_url": "https://yasharwitheisenkot.com/principles/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q12",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "likert",
-      "position": "qualified",
-      "status": "documented",
-      "source_id": "S08",
-      "source_url": "https://www.ynet.co.il/news/article/h1ajygm00ml",
-      "evidence_grade": "B",
-      "explanation": "הדגשת מורשת וציונות מופיעה בדיווח על תשובת המפלגה, לא הצעה מפורטת לליבה"
-    },
-    {
-      "question_id": "Q12",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q12",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q12",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S03",
-      "source_url": "https://beytenu.org.il/party-platform/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q12",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S05",
-      "source_url": "https://zionutdatit.org.il/hinuch/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q12",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q12",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q12",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q12",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q12",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q12",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q12",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S10",
-      "source_url": "https://hediot.co.il/topics/education/",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q13",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q13",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q13",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q13",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q13",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q13",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q13",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S07",
-      "source_url": "https://jointlist.org.il/he/platform/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q13",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q13",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q13",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q13",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q13",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q13",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q14",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "likert",
-      "position": "support",
-      "status": "documented",
-      "source_id": "S01",
-      "source_url": "https://yasharwitheisenkot.com/principles/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q14",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q14",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q14",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "likert",
-      "position": "qualified",
-      "status": "documented",
-      "source_id": "S12",
-      "source_url": "https://democrats.org.il/wp-content/uploads/2025/09/vision0725.pdf",
-      "evidence_grade": "C",
-      "explanation": "מסמך 2025 שקדם למצע הבחירות; לא מהווה התחייבות מפורטת להחלפת בגרויות"
-    },
-    {
-      "question_id": "Q14",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q14",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q14",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q14",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q14",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q14",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q14",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q14",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q14",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "likert",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
       "question_id": "Q15",
       "party_id": "yashar",
       "party": "ישר!",
@@ -4349,474 +2391,6 @@
       "explanation": ""
     },
     {
-      "question_id": "Q16",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S01",
-      "source_url": "https://yasharwitheisenkot.com/principles/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q16",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q16",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S02",
-      "source_url": "https://be-yahad.org.il/plans/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q16",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S09",
-      "source_url": "https://www.mako.co.il/news-israel-elections/2026/Article-e06361a0a7031a1026.htm",
-      "evidence_grade": "B",
-      "explanation": "תומכת בביזור בתוך אחריות מרכזית"
-    },
-    {
-      "question_id": "Q16",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S03",
-      "source_url": "https://beytenu.org.il/party-platform/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q16",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "conflicting_components",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": "הציונות הדתית מדגישה רגולטור ותפעול מקומי (אפשרות B), ואילו זהות מציעה שוברי חינוך להורים (אפשרות D); הרשימה המאוחדת לא הציגה הכרעה אחידה שהצלחנו לאמת"
-    },
-    {
-      "question_id": "Q16",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q16",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q16",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q16",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S08",
-      "source_url": "https://www.ynet.co.il/news/article/h1ajygm00ml",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q16",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q16",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S09",
-      "source_url": "https://www.mako.co.il/news-israel-elections/2026/Article-e06361a0a7031a1026.htm",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q16",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S10",
-      "source_url": "https://hediot.co.il/topics/education/",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q17",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "multiple_choice",
-      "position": "D",
-      "status": "documented",
-      "source_id": "S01",
-      "source_url": "https://yasharwitheisenkot.com/principles/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q17",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q17",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "multiple_choice",
-      "position": "A",
-      "status": "documented",
-      "source_id": "S02",
-      "source_url": "https://be-yahad.org.il/plans/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q17",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "multiple_choice",
-      "position": "C",
-      "status": "documented",
-      "source_id": "S09",
-      "source_url": "https://www.mako.co.il/news-israel-elections/2026/Article-e06361a0a7031a1026.htm",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q17",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S03",
-      "source_url": "https://beytenu.org.il/party-platform/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q17",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S05",
-      "source_url": "https://zionutdatit.org.il/hinuch/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q17",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "multiple_choice",
-      "position": "C",
-      "status": "documented",
-      "source_id": "S09",
-      "source_url": "https://www.mako.co.il/news-israel-elections/2026/Article-e06361a0a7031a1026.htm",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q17",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q17",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q17",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S08",
-      "source_url": "https://www.ynet.co.il/news/article/h1ajygm00ml",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q17",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q17",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S09",
-      "source_url": "https://www.mako.co.il/news-israel-elections/2026/Article-e06361a0a7031a1026.htm",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q17",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q18",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "multiple_choice",
-      "position": "C",
-      "status": "documented",
-      "source_id": "S01",
-      "source_url": "https://yasharwitheisenkot.com/principles/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q18",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q18",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "multiple_choice",
-      "position": "C",
-      "status": "documented",
-      "source_id": "S02",
-      "source_url": "https://be-yahad.org.il/plans/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q18",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S09",
-      "source_url": "https://www.mako.co.il/news-israel-elections/2026/Article-e06361a0a7031a1026.htm",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q18",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "multiple_choice",
-      "position": "D",
-      "status": "documented",
-      "source_id": "S03",
-      "source_url": "https://beytenu.org.il/party-platform/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q18",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q18",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "multiple_choice",
-      "position": "A",
-      "status": "documented",
-      "source_id": "S07",
-      "source_url": "https://jointlist.org.il/he/platform/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q18",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q18",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q18",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q18",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q18",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q18",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
       "question_id": "Q19",
       "party_id": "yashar",
       "party": "ישר!",
@@ -4970,162 +2544,6 @@
       "source_id": "S10",
       "source_url": "https://hediot.co.il/topics/education/",
       "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q20",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S01",
-      "source_url": "https://yasharwitheisenkot.com/principles/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q20",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q20",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "multiple_choice",
-      "position": "A",
-      "status": "documented",
-      "source_id": "S02",
-      "source_url": "https://be-yahad.org.il/plans/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q20",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S04",
-      "source_url": "https://democrats.org.il/content/equality-checklist",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q20",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "multiple_choice",
-      "position": "A",
-      "status": "documented",
-      "source_id": "S03",
-      "source_url": "https://beytenu.org.il/party-platform/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q20",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q20",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q20",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "multiple_choice",
-      "position": "C",
-      "status": "documented",
-      "source_id": "S08",
-      "source_url": "https://www.ynet.co.il/news/article/h1ajygm00ml",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q20",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "multiple_choice",
-      "position": "C",
-      "status": "documented",
-      "source_id": "S08",
-      "source_url": "https://www.ynet.co.il/news/article/h1ajygm00ml",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q20",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q20",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q20",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "multiple_choice",
-      "position": "A",
-      "status": "documented",
-      "source_id": "S11",
-      "source_url": "https://www.bakalpi.co.il/he/parties/bait-tzioni",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q20",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
       "explanation": ""
     },
     {
@@ -5597,162 +3015,6 @@
       "explanation": ""
     },
     {
-      "question_id": "Q24",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S01",
-      "source_url": "https://yasharwitheisenkot.com/principles/education/",
-      "evidence_grade": "A",
-      "explanation": "הקצאת זמן לחונכות אישית ומענה רגשי"
-    },
-    {
-      "question_id": "Q24",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S08",
-      "source_url": "https://www.ynet.co.il/news/article/h1ajygm00ml",
-      "evidence_grade": "B",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q24",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "multiple_choice",
-      "position": "A",
-      "status": "documented",
-      "source_id": "S02",
-      "source_url": "https://be-yahad.org.il/plans/education/",
-      "evidence_grade": "A",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q24",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "multiple_choice",
-      "position": "B",
-      "status": "documented",
-      "source_id": "S12",
-      "source_url": "https://democrats.org.il/wp-content/uploads/2025/09/vision0725.pdf",
-      "evidence_grade": "C",
-      "explanation": "מקור 2025: יועצות, פסיכולוגים, תוכניות מניעה"
-    },
-    {
-      "question_id": "Q24",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q24",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q24",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q24",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q24",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q24",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q24",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q24",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q24",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
       "question_id": "Q25",
       "party_id": "yashar",
       "party": "ישר!",
@@ -5909,7 +3171,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q26",
+      "question_id": "X02",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -5921,173 +3183,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q26",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "multiple_choice",
-      "position": [
-        "D"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q26",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "multiple_choice",
-      "position": [
-        "A"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי יש עתיד"
-    },
-    {
-      "question_id": "Q26",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q26",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "multiple_choice",
-      "position": [
-        "A"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q26",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q26",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q26",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "multiple_choice",
-      "position": [
-        "C"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q26",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "multiple_choice",
-      "position": [
-        "C"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q26",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q26",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q26",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q26",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q27",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q27",
+      "question_id": "X02",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -6101,7 +3197,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q27",
+      "question_id": "X02",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -6113,7 +3209,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q27",
+      "question_id": "X02",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -6127,7 +3223,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q27",
+      "question_id": "X02",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -6141,7 +3237,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q27",
+      "question_id": "X02",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -6153,7 +3249,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q27",
+      "question_id": "X02",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -6165,7 +3261,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q27",
+      "question_id": "X02",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -6177,7 +3273,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q27",
+      "question_id": "X02",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -6189,7 +3285,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q27",
+      "question_id": "X02",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -6201,7 +3297,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q27",
+      "question_id": "X02",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -6213,7 +3309,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q27",
+      "question_id": "X02",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -6227,7 +3323,7 @@
       "explanation": "לפי הכלכלה החדשה (זליכה), יועז הנדל"
     },
     {
-      "question_id": "Q27",
+      "question_id": "X02",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -6241,7 +3337,7 @@
       "explanation": "לפי עמך"
     },
     {
-      "question_id": "Q28",
+      "question_id": "X03",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -6253,7 +3349,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q28",
+      "question_id": "X03",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -6267,7 +3363,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q28",
+      "question_id": "X03",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -6279,7 +3375,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q28",
+      "question_id": "X03",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -6293,7 +3389,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q28",
+      "question_id": "X03",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -6307,7 +3403,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q28",
+      "question_id": "X03",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -6319,7 +3415,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q28",
+      "question_id": "X03",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -6331,7 +3427,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q28",
+      "question_id": "X03",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -6345,7 +3441,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q28",
+      "question_id": "X03",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -6359,7 +3455,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q28",
+      "question_id": "X03",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -6371,7 +3467,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q28",
+      "question_id": "X03",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -6383,7 +3479,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q28",
+      "question_id": "X03",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -6397,7 +3493,7 @@
       "explanation": "לפי מרכיב אחד בלבד: הכלכלה החדשה (זליכה)"
     },
     {
-      "question_id": "Q28",
+      "question_id": "X03",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -6411,7 +3507,7 @@
       "explanation": "לפי עמך"
     },
     {
-      "question_id": "Q29",
+      "question_id": "X05",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -6423,177 +3519,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q29",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q29",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "multiple_choice",
-      "position": [
-        "A"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי יש עתיד"
-    },
-    {
-      "question_id": "Q29",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "multiple_choice",
-      "position": [
-        "A"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q29",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q29",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "multiple_choice",
-      "position": [
-        "B"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי הציונות הדתית"
-    },
-    {
-      "question_id": "Q29",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q29",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "multiple_choice",
-      "position": [
-        "D"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q29",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "multiple_choice",
-      "position": [
-        "D"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q29",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "multiple_choice",
-      "position": [
-        "B"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q29",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q29",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "multiple_choice",
-      "position": [
-        "C"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי מרכיב אחד בלבד: יועז הנדל"
-    },
-    {
-      "question_id": "Q29",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q30",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q30",
+      "question_id": "X05",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -6607,7 +3533,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q30",
+      "question_id": "X05",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -6621,7 +3547,7 @@
       "explanation": "לפי יש עתיד"
     },
     {
-      "question_id": "Q30",
+      "question_id": "X05",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -6635,7 +3561,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q30",
+      "question_id": "X05",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -6647,7 +3573,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q30",
+      "question_id": "X05",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -6659,7 +3585,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q30",
+      "question_id": "X05",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -6671,7 +3597,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q30",
+      "question_id": "X05",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -6683,7 +3609,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q30",
+      "question_id": "X05",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -6695,7 +3621,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q30",
+      "question_id": "X05",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -6707,7 +3633,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q30",
+      "question_id": "X05",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -6719,7 +3645,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q30",
+      "question_id": "X05",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -6733,7 +3659,7 @@
       "explanation": "לפי מרכיב אחד בלבד: הכלכלה החדשה (זליכה)"
     },
     {
-      "question_id": "Q30",
+      "question_id": "X05",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -6747,7 +3673,7 @@
       "explanation": "לפי עמך"
     },
     {
-      "question_id": "Q31",
+      "question_id": "X07",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -6759,7 +3685,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q31",
+      "question_id": "X07",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -6771,173 +3697,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q31",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "multiple_choice",
-      "position": [
-        "C"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי יש עתיד"
-    },
-    {
-      "question_id": "Q31",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "multiple_choice",
-      "position": [
-        "B"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q31",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q31",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "multiple_choice",
-      "position": [
-        "D"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי הציונות הדתית"
-    },
-    {
-      "question_id": "Q31",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q31",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q31",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q31",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q31",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q31",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "multiple_choice",
-      "position": [
-        "A"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי מרכיב אחד בלבד: הכלכלה החדשה (זליכה)"
-    },
-    {
-      "question_id": "Q31",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "multiple_choice",
-      "position": [
-        "B"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי עמך"
-    },
-    {
-      "question_id": "Q32",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q32",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q32",
+      "question_id": "X07",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -6951,7 +3711,7 @@
       "explanation": "לפי יש עתיד"
     },
     {
-      "question_id": "Q32",
+      "question_id": "X07",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -6963,7 +3723,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q32",
+      "question_id": "X07",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -6977,7 +3737,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q32",
+      "question_id": "X07",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -6991,7 +3751,7 @@
       "explanation": "לפי הציונות הדתית"
     },
     {
-      "question_id": "Q32",
+      "question_id": "X07",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -7005,7 +3765,7 @@
       "explanation": "לפי מפלגות ערביות (רע״מ, חד״ש-תע״ל)"
     },
     {
-      "question_id": "Q32",
+      "question_id": "X07",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -7017,7 +3777,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q32",
+      "question_id": "X07",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -7029,7 +3789,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q32",
+      "question_id": "X07",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -7043,7 +3803,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q32",
+      "question_id": "X07",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -7057,7 +3817,7 @@
       "explanation": "לפי מפלגות ערביות (רע״מ, חד״ש-תע״ל)"
     },
     {
-      "question_id": "Q32",
+      "question_id": "X07",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -7071,7 +3831,7 @@
       "explanation": "לפי מרכיב אחד בלבד: יועז הנדל"
     },
     {
-      "question_id": "Q32",
+      "question_id": "X07",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -7083,7 +3843,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q33",
+      "question_id": "X09",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -7095,171 +3855,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q33",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "multiple_choice",
-      "position": [
-        "C"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q33",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q33",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "multiple_choice",
-      "position": [
-        "D"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q33",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "multiple_choice",
-      "position": [
-        "B"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q33",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q33",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q33",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q33",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q33",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q33",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q33",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "conflicting_components",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": "מרכיבי הרשימה שויכו לאפשרויות שונות (הכלכלה החדשה (זליכה): A; יועז הנדל: B); לא נוקד"
-    },
-    {
-      "question_id": "Q33",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "multiple_choice",
-      "position": [
-        "D"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי עמך"
-    },
-    {
-      "question_id": "Q34",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q34",
+      "question_id": "X09",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -7271,7 +3867,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q34",
+      "question_id": "X09",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -7285,7 +3881,7 @@
       "explanation": "לפי יש עתיד"
     },
     {
-      "question_id": "Q34",
+      "question_id": "X09",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -7297,7 +3893,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q34",
+      "question_id": "X09",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -7309,7 +3905,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q34",
+      "question_id": "X09",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -7323,7 +3919,7 @@
       "explanation": "לפי הציונות הדתית"
     },
     {
-      "question_id": "Q34",
+      "question_id": "X09",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -7335,7 +3931,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q34",
+      "question_id": "X09",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -7349,7 +3945,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q34",
+      "question_id": "X09",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -7363,7 +3959,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q34",
+      "question_id": "X09",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -7375,7 +3971,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q34",
+      "question_id": "X09",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -7387,7 +3983,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q34",
+      "question_id": "X09",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -7399,7 +3995,7 @@
       "explanation": "מרכיבי הרשימה שויכו לאפשרויות שונות (הכלכלה החדשה (זליכה): A; יועז הנדל: B); לא נוקד"
     },
     {
-      "question_id": "Q34",
+      "question_id": "X09",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -7411,7 +4007,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q35",
+      "question_id": "X10",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -7423,7 +4019,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q35",
+      "question_id": "X10",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -7437,7 +4033,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q35",
+      "question_id": "X10",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -7449,7 +4045,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q35",
+      "question_id": "X10",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -7463,7 +4059,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q35",
+      "question_id": "X10",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -7475,7 +4071,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q35",
+      "question_id": "X10",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -7487,7 +4083,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q35",
+      "question_id": "X10",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -7499,7 +4095,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q35",
+      "question_id": "X10",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -7513,7 +4109,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q35",
+      "question_id": "X10",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -7527,7 +4123,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q35",
+      "question_id": "X10",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -7539,7 +4135,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q35",
+      "question_id": "X10",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -7551,7 +4147,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q35",
+      "question_id": "X10",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -7565,7 +4161,7 @@
       "explanation": "לפי מרכיב אחד בלבד: הכלכלה החדשה (זליכה)"
     },
     {
-      "question_id": "Q35",
+      "question_id": "X10",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -7579,7 +4175,7 @@
       "explanation": "לפי עמך"
     },
     {
-      "question_id": "Q36",
+      "question_id": "X11",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -7591,7 +4187,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q36",
+      "question_id": "X11",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -7605,7 +4201,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q36",
+      "question_id": "X11",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -7619,7 +4215,7 @@
       "explanation": "לפי יש עתיד"
     },
     {
-      "question_id": "Q36",
+      "question_id": "X11",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -7633,7 +4229,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q36",
+      "question_id": "X11",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -7647,7 +4243,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q36",
+      "question_id": "X11",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -7659,7 +4255,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q36",
+      "question_id": "X11",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -7671,7 +4267,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q36",
+      "question_id": "X11",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -7683,7 +4279,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q36",
+      "question_id": "X11",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -7695,7 +4291,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q36",
+      "question_id": "X11",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -7707,7 +4303,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q36",
+      "question_id": "X11",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -7719,7 +4315,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q36",
+      "question_id": "X11",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -7731,7 +4327,7 @@
       "explanation": "מרכיבי הרשימה שויכו לאפשרויות שונות (הכלכלה החדשה (זליכה): A; יועז הנדל: B); לא נוקד"
     },
     {
-      "question_id": "Q36",
+      "question_id": "X11",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -7745,7 +4341,7 @@
       "explanation": "לפי עמך"
     },
     {
-      "question_id": "Q37",
+      "question_id": "X13",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -7757,175 +4353,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q37",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q37",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "multiple_choice",
-      "position": [
-        "C"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי יש עתיד"
-    },
-    {
-      "question_id": "Q37",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q37",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q37",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "multiple_choice",
-      "position": [
-        "A"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי הציונות הדתית"
-    },
-    {
-      "question_id": "Q37",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q37",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "multiple_choice",
-      "position": [
-        "B"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q37",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "multiple_choice",
-      "position": [
-        "B"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q37",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "multiple_choice",
-      "position": [
-        "A"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q37",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q37",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "multiple_choice",
-      "position": [
-        "D"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי מרכיב אחד בלבד: יועז הנדל"
-    },
-    {
-      "question_id": "Q37",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q38",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q38",
+      "question_id": "X13",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -7939,7 +4367,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q38",
+      "question_id": "X13",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -7951,7 +4379,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q38",
+      "question_id": "X13",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -7965,7 +4393,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q38",
+      "question_id": "X13",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -7977,7 +4405,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q38",
+      "question_id": "X13",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -7989,7 +4417,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q38",
+      "question_id": "X13",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -8003,7 +4431,7 @@
       "explanation": "לפי מפלגות ערביות"
     },
     {
-      "question_id": "Q38",
+      "question_id": "X13",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -8015,7 +4443,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q38",
+      "question_id": "X13",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -8029,7 +4457,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q38",
+      "question_id": "X13",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -8041,7 +4469,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q38",
+      "question_id": "X13",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -8055,7 +4483,7 @@
       "explanation": "לפי מפלגות ערביות"
     },
     {
-      "question_id": "Q38",
+      "question_id": "X13",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -8069,7 +4497,7 @@
       "explanation": "לפי הכלכלה החדשה (זליכה), יועז הנדל"
     },
     {
-      "question_id": "Q38",
+      "question_id": "X13",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -8083,7 +4511,7 @@
       "explanation": "לפי עמך"
     },
     {
-      "question_id": "Q39",
+      "question_id": "X14",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -8095,7 +4523,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q39",
+      "question_id": "X14",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -8107,7 +4535,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q39",
+      "question_id": "X14",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -8121,7 +4549,7 @@
       "explanation": "לפי יש עתיד"
     },
     {
-      "question_id": "Q39",
+      "question_id": "X14",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -8135,7 +4563,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q39",
+      "question_id": "X14",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -8147,7 +4575,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q39",
+      "question_id": "X14",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -8159,7 +4587,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q39",
+      "question_id": "X14",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -8171,7 +4599,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q39",
+      "question_id": "X14",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -8183,7 +4611,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q39",
+      "question_id": "X14",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -8195,7 +4623,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q39",
+      "question_id": "X14",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -8209,7 +4637,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q39",
+      "question_id": "X14",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -8221,7 +4649,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q39",
+      "question_id": "X14",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -8235,7 +4663,7 @@
       "explanation": "לפי הכלכלה החדשה (זליכה), יועז הנדל"
     },
     {
-      "question_id": "Q39",
+      "question_id": "X14",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -8249,7 +4677,7 @@
       "explanation": "לפי עמך"
     },
     {
-      "question_id": "Q40",
+      "question_id": "X15",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -8261,7 +4689,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q40",
+      "question_id": "X15",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -8273,7 +4701,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q40",
+      "question_id": "X15",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -8287,7 +4715,7 @@
       "explanation": "לפי יש עתיד"
     },
     {
-      "question_id": "Q40",
+      "question_id": "X15",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -8301,7 +4729,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q40",
+      "question_id": "X15",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -8313,7 +4741,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q40",
+      "question_id": "X15",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -8325,7 +4753,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q40",
+      "question_id": "X15",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -8337,7 +4765,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q40",
+      "question_id": "X15",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -8351,7 +4779,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q40",
+      "question_id": "X15",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -8365,7 +4793,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q40",
+      "question_id": "X15",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -8377,7 +4805,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q40",
+      "question_id": "X15",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -8389,7 +4817,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q40",
+      "question_id": "X15",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -8403,7 +4831,7 @@
       "explanation": "לפי מרכיב אחד בלבד: הכלכלה החדשה (זליכה)"
     },
     {
-      "question_id": "Q40",
+      "question_id": "X15",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -8415,7 +4843,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q41",
+      "question_id": "X16",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -8427,7 +4855,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q41",
+      "question_id": "X16",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -8439,7 +4867,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q41",
+      "question_id": "X16",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -8453,7 +4881,7 @@
       "explanation": "לפי יש עתיד"
     },
     {
-      "question_id": "Q41",
+      "question_id": "X16",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -8467,7 +4895,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q41",
+      "question_id": "X16",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -8481,7 +4909,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q41",
+      "question_id": "X16",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -8493,7 +4921,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q41",
+      "question_id": "X16",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -8505,7 +4933,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q41",
+      "question_id": "X16",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -8517,7 +4945,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q41",
+      "question_id": "X16",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -8529,7 +4957,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q41",
+      "question_id": "X16",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -8541,7 +4969,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q41",
+      "question_id": "X16",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -8553,7 +4981,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q41",
+      "question_id": "X16",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -8567,7 +4995,7 @@
       "explanation": "לפי הכלכלה החדשה (זליכה), יועז הנדל"
     },
     {
-      "question_id": "Q41",
+      "question_id": "X16",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -8581,7 +5009,7 @@
       "explanation": "לפי עמך"
     },
     {
-      "question_id": "Q42",
+      "question_id": "X17",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -8593,7 +5021,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q42",
+      "question_id": "X17",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -8605,7 +5033,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q42",
+      "question_id": "X17",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -8619,7 +5047,7 @@
       "explanation": "לפי יש עתיד"
     },
     {
-      "question_id": "Q42",
+      "question_id": "X17",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -8633,7 +5061,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q42",
+      "question_id": "X17",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -8645,7 +5073,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q42",
+      "question_id": "X17",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -8659,7 +5087,7 @@
       "explanation": "לפי הציונות הדתית"
     },
     {
-      "question_id": "Q42",
+      "question_id": "X17",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -8671,7 +5099,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q42",
+      "question_id": "X17",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -8685,7 +5113,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q42",
+      "question_id": "X17",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -8699,7 +5127,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q42",
+      "question_id": "X17",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -8711,7 +5139,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q42",
+      "question_id": "X17",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -8723,7 +5151,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q42",
+      "question_id": "X17",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -8737,7 +5165,7 @@
       "explanation": "לפי מרכיב אחד בלבד: יועז הנדל"
     },
     {
-      "question_id": "Q42",
+      "question_id": "X17",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -8749,7 +5177,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q43",
+      "question_id": "X18",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -8761,7 +5189,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q43",
+      "question_id": "X18",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -8775,7 +5203,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q43",
+      "question_id": "X18",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -8789,7 +5217,7 @@
       "explanation": "לפי יש עתיד"
     },
     {
-      "question_id": "Q43",
+      "question_id": "X18",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -8803,7 +5231,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q43",
+      "question_id": "X18",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -8817,7 +5245,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q43",
+      "question_id": "X18",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -8831,7 +5259,7 @@
       "explanation": "לפי הציונות הדתית"
     },
     {
-      "question_id": "Q43",
+      "question_id": "X18",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -8845,7 +5273,7 @@
       "explanation": "לפי מפלגות ערביות"
     },
     {
-      "question_id": "Q43",
+      "question_id": "X18",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -8859,7 +5287,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q43",
+      "question_id": "X18",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -8871,7 +5299,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q43",
+      "question_id": "X18",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -8883,7 +5311,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q43",
+      "question_id": "X18",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -8897,7 +5325,7 @@
       "explanation": "לפי מפלגות ערביות"
     },
     {
-      "question_id": "Q43",
+      "question_id": "X18",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -8911,7 +5339,7 @@
       "explanation": "לפי מרכיב אחד בלבד: יועז הנדל"
     },
     {
-      "question_id": "Q43",
+      "question_id": "X18",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -8923,7 +5351,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q44",
+      "question_id": "X19",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -8935,7 +5363,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q44",
+      "question_id": "X19",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -8947,7 +5375,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q44",
+      "question_id": "X19",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -8959,7 +5387,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q44",
+      "question_id": "X19",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -8973,7 +5401,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q44",
+      "question_id": "X19",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -8985,7 +5413,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q44",
+      "question_id": "X19",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -8999,7 +5427,7 @@
       "explanation": "לפי הציונות הדתית"
     },
     {
-      "question_id": "Q44",
+      "question_id": "X19",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -9011,7 +5439,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q44",
+      "question_id": "X19",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -9023,7 +5451,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q44",
+      "question_id": "X19",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -9037,7 +5465,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q44",
+      "question_id": "X19",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -9049,7 +5477,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q44",
+      "question_id": "X19",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -9061,7 +5489,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q44",
+      "question_id": "X19",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -9073,7 +5501,7 @@
       "explanation": "מרכיבי הרשימה שויכו לאפשרויות שונות (יועז הנדל: C; הכלכלה החדשה (זליכה): D); לא נוקד"
     },
     {
-      "question_id": "Q44",
+      "question_id": "X19",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -9087,7 +5515,7 @@
       "explanation": "לפי עמך"
     },
     {
-      "question_id": "Q45",
+      "question_id": "X20",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -9099,7 +5527,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q45",
+      "question_id": "X20",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -9113,7 +5541,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q45",
+      "question_id": "X20",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -9125,7 +5553,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q45",
+      "question_id": "X20",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -9139,7 +5567,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q45",
+      "question_id": "X20",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -9151,7 +5579,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q45",
+      "question_id": "X20",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -9163,7 +5591,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q45",
+      "question_id": "X20",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -9175,7 +5603,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q45",
+      "question_id": "X20",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -9187,7 +5615,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q45",
+      "question_id": "X20",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -9199,7 +5627,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q45",
+      "question_id": "X20",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -9213,7 +5641,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q45",
+      "question_id": "X20",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -9225,7 +5653,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q45",
+      "question_id": "X20",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -9237,7 +5665,7 @@
       "explanation": "מרכיבי הרשימה שויכו לאפשרויות שונות (יועז הנדל: B; הכלכלה החדשה (זליכה): D); לא נוקד"
     },
     {
-      "question_id": "Q45",
+      "question_id": "X20",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -9249,7 +5677,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q46",
+      "question_id": "X21",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -9261,7 +5689,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q46",
+      "question_id": "X21",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -9275,7 +5703,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q46",
+      "question_id": "X21",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -9287,7 +5715,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q46",
+      "question_id": "X21",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -9301,7 +5729,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q46",
+      "question_id": "X21",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -9315,7 +5743,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q46",
+      "question_id": "X21",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -9327,7 +5755,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q46",
+      "question_id": "X21",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -9339,7 +5767,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q46",
+      "question_id": "X21",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -9351,7 +5779,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q46",
+      "question_id": "X21",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -9365,7 +5793,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q46",
+      "question_id": "X21",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -9377,7 +5805,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q46",
+      "question_id": "X21",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -9389,7 +5817,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q46",
+      "question_id": "X21",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -9403,7 +5831,7 @@
       "explanation": "לפי מרכיב אחד בלבד: הכלכלה החדשה (זליכה)"
     },
     {
-      "question_id": "Q46",
+      "question_id": "X21",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -9417,7 +5845,7 @@
       "explanation": "לפי עמך"
     },
     {
-      "question_id": "Q47",
+      "question_id": "X24",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -9429,335 +5857,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q47",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "multiple_choice",
-      "position": [
-        "D"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q47",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "multiple_choice",
-      "position": [
-        "B"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי יש עתיד"
-    },
-    {
-      "question_id": "Q47",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q47",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q47",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "multiple_choice",
-      "position": [
-        "C"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי הציונות הדתית"
-    },
-    {
-      "question_id": "Q47",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q47",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "multiple_choice",
-      "position": [
-        "C"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q47",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q47",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q47",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q47",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "conflicting_components",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": "מרכיבי הרשימה שויכו לאפשרויות שונות (הכלכלה החדשה (זליכה): A; יועז הנדל: D); לא נוקד"
-    },
-    {
-      "question_id": "Q47",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q48",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q48",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "multiple_choice",
-      "position": [
-        "D"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q48",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q48",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q48",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "multiple_choice",
-      "position": [
-        "B"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q48",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q48",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q48",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "multiple_choice",
-      "position": [
-        "C"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q48",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "multiple_choice",
-      "position": [
-        "C"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q48",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q48",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q48",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q48",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q49",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q49",
+      "question_id": "X24",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -9769,7 +5869,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q49",
+      "question_id": "X24",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -9783,7 +5883,7 @@
       "explanation": "לפי יש עתיד"
     },
     {
-      "question_id": "Q49",
+      "question_id": "X24",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -9797,7 +5897,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q49",
+      "question_id": "X24",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -9809,7 +5909,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q49",
+      "question_id": "X24",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -9821,7 +5921,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q49",
+      "question_id": "X24",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -9835,7 +5935,7 @@
       "explanation": "לפי מפלגות ערביות"
     },
     {
-      "question_id": "Q49",
+      "question_id": "X24",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -9847,7 +5947,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q49",
+      "question_id": "X24",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -9861,7 +5961,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q49",
+      "question_id": "X24",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -9873,7 +5973,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q49",
+      "question_id": "X24",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -9887,7 +5987,7 @@
       "explanation": "לפי מפלגות ערביות"
     },
     {
-      "question_id": "Q49",
+      "question_id": "X24",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -9901,7 +6001,7 @@
       "explanation": "לפי מרכיב אחד בלבד: הכלכלה החדשה (זליכה)"
     },
     {
-      "question_id": "Q49",
+      "question_id": "X24",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -9915,7 +6015,7 @@
       "explanation": "לפי עמך"
     },
     {
-      "question_id": "Q50",
+      "question_id": "X26",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -9927,173 +6027,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q50",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "multiple_choice",
-      "position": [
-        "C"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q50",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "multiple_choice",
-      "position": [
-        "B"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי יש עתיד"
-    },
-    {
-      "question_id": "Q50",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q50",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "multiple_choice",
-      "position": [
-        "A"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q50",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "multiple_choice",
-      "position": [
-        "D"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי הציונות הדתית"
-    },
-    {
-      "question_id": "Q50",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q50",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "multiple_choice",
-      "position": [
-        "D"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q50",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q50",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q50",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q50",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "conflicting_components",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": "מרכיבי הרשימה שויכו לאפשרויות שונות (יועז הנדל: A; הכלכלה החדשה (זליכה): B); לא נוקד"
-    },
-    {
-      "question_id": "Q50",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q51",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q51",
+      "question_id": "X26",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -10105,7 +6039,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q51",
+      "question_id": "X26",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -10119,7 +6053,7 @@
       "explanation": "לפי יש עתיד"
     },
     {
-      "question_id": "Q51",
+      "question_id": "X26",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -10133,7 +6067,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q51",
+      "question_id": "X26",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -10145,7 +6079,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q51",
+      "question_id": "X26",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -10159,7 +6093,7 @@
       "explanation": "לפי הציונות הדתית"
     },
     {
-      "question_id": "Q51",
+      "question_id": "X26",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -10171,7 +6105,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q51",
+      "question_id": "X26",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -10183,7 +6117,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q51",
+      "question_id": "X26",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -10197,7 +6131,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q51",
+      "question_id": "X26",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -10209,7 +6143,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q51",
+      "question_id": "X26",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -10221,7 +6155,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q51",
+      "question_id": "X26",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -10233,7 +6167,7 @@
       "explanation": "מרכיבי הרשימה שויכו לאפשרויות שונות (הכלכלה החדשה (זליכה): B; יועז הנדל: C); לא נוקד"
     },
     {
-      "question_id": "Q51",
+      "question_id": "X26",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -10245,7 +6179,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q52",
+      "question_id": "X27",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -10257,7 +6191,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q52",
+      "question_id": "X27",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -10269,7 +6203,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q52",
+      "question_id": "X27",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -10281,7 +6215,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q52",
+      "question_id": "X27",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -10295,7 +6229,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q52",
+      "question_id": "X27",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -10309,7 +6243,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q52",
+      "question_id": "X27",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -10321,7 +6255,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q52",
+      "question_id": "X27",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -10335,7 +6269,7 @@
       "explanation": "לפי מפלגות ערביות"
     },
     {
-      "question_id": "Q52",
+      "question_id": "X27",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -10347,7 +6281,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q52",
+      "question_id": "X27",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -10359,7 +6293,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q52",
+      "question_id": "X27",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -10371,7 +6305,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q52",
+      "question_id": "X27",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -10385,7 +6319,7 @@
       "explanation": "לפי מפלגות ערביות"
     },
     {
-      "question_id": "Q52",
+      "question_id": "X27",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -10397,7 +6331,7 @@
       "explanation": "מרכיבי הרשימה שויכו לאפשרויות שונות (יועז הנדל: B; הכלכלה החדשה (זליכה): C); לא נוקד"
     },
     {
-      "question_id": "Q52",
+      "question_id": "X27",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -10411,7 +6345,7 @@
       "explanation": "לפי עמך"
     },
     {
-      "question_id": "Q53",
+      "question_id": "X29",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -10423,7 +6357,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q53",
+      "question_id": "X29",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -10437,177 +6371,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q53",
-      "party_id": "beyahad",
-      "party": "ביחד",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q53",
-      "party_id": "democrats",
-      "party": "הדמוקרטים",
-      "type": "multiple_choice",
-      "position": [
-        "B"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q53",
-      "party_id": "beytenu",
-      "party": "ישראל ביתנו",
-      "type": "multiple_choice",
-      "position": [
-        "A"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q53",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q53",
-      "party_id": "joint_list",
-      "party": "הרשימה המשותפת",
-      "type": "multiple_choice",
-      "position": [
-        "D"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי מפלגות ערביות"
-    },
-    {
-      "question_id": "Q53",
-      "party_id": "utj",
-      "party": "יהדות התורה",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q53",
-      "party_id": "shas",
-      "party": "ש״ס",
-      "type": "multiple_choice",
-      "position": [
-        "D"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q53",
-      "party_id": "otzma",
-      "party": "עוצמה יהודית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q53",
-      "party_id": "raam",
-      "party": "רע״ם",
-      "type": "multiple_choice",
-      "position": [
-        "D"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי מפלגות ערביות"
-    },
-    {
-      "question_id": "Q53",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "conflicting_components",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": "מרכיבי הרשימה שויכו לאפשרויות שונות (הכלכלה החדשה (זליכה): A; יועז הנדל: C); לא נוקד"
-    },
-    {
-      "question_id": "Q53",
-      "party_id": "amcha",
-      "party": "עמך ישראל",
-      "type": "multiple_choice",
-      "position": [
-        "B"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": "לפי עמך"
-    },
-    {
-      "question_id": "Q54",
-      "party_id": "yashar",
-      "party": "ישר!",
-      "type": "multiple_choice",
-      "position": null,
-      "status": "unknown",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": null,
-      "explanation": ""
-    },
-    {
-      "question_id": "Q54",
-      "party_id": "likud",
-      "party": "הליכוד",
-      "type": "multiple_choice",
-      "position": [
-        "C"
-      ],
-      "status": "estimated",
-      "source_id": null,
-      "source_url": null,
-      "evidence_grade": "U",
-      "explanation": ""
-    },
-    {
-      "question_id": "Q54",
+      "question_id": "X29",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -10621,7 +6385,7 @@
       "explanation": "לפי יש עתיד"
     },
     {
-      "question_id": "Q54",
+      "question_id": "X29",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -10635,7 +6399,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q54",
+      "question_id": "X29",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -10647,7 +6411,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q54",
+      "question_id": "X29",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -10661,7 +6425,7 @@
       "explanation": "לפי הציונות הדתית"
     },
     {
-      "question_id": "Q54",
+      "question_id": "X29",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -10673,7 +6437,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q54",
+      "question_id": "X29",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -10685,7 +6449,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q54",
+      "question_id": "X29",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -10697,7 +6461,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q54",
+      "question_id": "X29",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -10711,7 +6475,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q54",
+      "question_id": "X29",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -10723,7 +6487,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q54",
+      "question_id": "X29",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -10737,7 +6501,7 @@
       "explanation": "לפי מרכיב אחד בלבד: הכלכלה החדשה (זליכה)"
     },
     {
-      "question_id": "Q54",
+      "question_id": "X29",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -10749,7 +6513,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q55",
+      "question_id": "X30",
       "party_id": "yashar",
       "party": "ישר!",
       "type": "multiple_choice",
@@ -10761,7 +6525,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q55",
+      "question_id": "X30",
       "party_id": "likud",
       "party": "הליכוד",
       "type": "multiple_choice",
@@ -10773,7 +6537,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q55",
+      "question_id": "X30",
       "party_id": "beyahad",
       "party": "ביחד",
       "type": "multiple_choice",
@@ -10785,7 +6549,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q55",
+      "question_id": "X30",
       "party_id": "democrats",
       "party": "הדמוקרטים",
       "type": "multiple_choice",
@@ -10797,7 +6561,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q55",
+      "question_id": "X30",
       "party_id": "beytenu",
       "party": "ישראל ביתנו",
       "type": "multiple_choice",
@@ -10809,7 +6573,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q55",
+      "question_id": "X30",
       "party_id": "religious_zionism_zehut",
       "party": "הציונות הדתית–זהות",
       "type": "multiple_choice",
@@ -10823,7 +6587,7 @@
       "explanation": "לפי הציונות הדתית"
     },
     {
-      "question_id": "Q55",
+      "question_id": "X30",
       "party_id": "joint_list",
       "party": "הרשימה המשותפת",
       "type": "multiple_choice",
@@ -10835,7 +6599,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q55",
+      "question_id": "X30",
       "party_id": "utj",
       "party": "יהדות התורה",
       "type": "multiple_choice",
@@ -10847,7 +6611,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q55",
+      "question_id": "X30",
       "party_id": "shas",
       "party": "ש״ס",
       "type": "multiple_choice",
@@ -10861,7 +6625,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q55",
+      "question_id": "X30",
       "party_id": "otzma",
       "party": "עוצמה יהודית",
       "type": "multiple_choice",
@@ -10873,7 +6637,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q55",
+      "question_id": "X30",
       "party_id": "raam",
       "party": "רע״ם",
       "type": "multiple_choice",
@@ -10885,7 +6649,7 @@
       "explanation": ""
     },
     {
-      "question_id": "Q55",
+      "question_id": "X30",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "type": "multiple_choice",
@@ -10897,7 +6661,7 @@
       "explanation": "מרכיבי הרשימה שויכו לאפשרויות שונות (יועז הנדל: A; הכלכלה החדשה (זליכה): C); לא נוקד"
     },
     {
-      "question_id": "Q55",
+      "question_id": "X30",
       "party_id": "amcha",
       "party": "עמך ישראל",
       "type": "multiple_choice",
@@ -11019,18 +6783,7 @@
   ],
   "unscored_conflicts": [
     {
-      "question_id": "Q16",
-      "party_id": "religious_zionism_zehut",
-      "party": "הציונות הדתית–זהות",
-      "status": "conflicting_components",
-      "note": "הציונות הדתית מדגישה רגולטור ותפעול מקומי (אפשרות B), ואילו זהות מציעה שוברי חינוך להורים (אפשרות D); הרשימה המאוחדת לא הציגה הכרעה אחידה שהצלחנו לאמת",
-      "sources": [
-        "S05",
-        "S06"
-      ]
-    },
-    {
-      "question_id": "Q33",
+      "question_id": "X09",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "status": "conflicting_components",
@@ -11038,7 +6791,7 @@
       "sources": []
     },
     {
-      "question_id": "Q34",
+      "question_id": "X11",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "status": "conflicting_components",
@@ -11046,15 +6799,7 @@
       "sources": []
     },
     {
-      "question_id": "Q36",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "status": "conflicting_components",
-      "note": "מרכיבי הרשימה שויכו לאפשרויות שונות (הכלכלה החדשה (זליכה): A; יועז הנדל: B); לא נוקד",
-      "sources": []
-    },
-    {
-      "question_id": "Q44",
+      "question_id": "X19",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "status": "conflicting_components",
@@ -11062,7 +6807,7 @@
       "sources": []
     },
     {
-      "question_id": "Q45",
+      "question_id": "X20",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "status": "conflicting_components",
@@ -11070,23 +6815,7 @@
       "sources": []
     },
     {
-      "question_id": "Q47",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "status": "conflicting_components",
-      "note": "מרכיבי הרשימה שויכו לאפשרויות שונות (הכלכלה החדשה (זליכה): A; יועז הנדל: D); לא נוקד",
-      "sources": []
-    },
-    {
-      "question_id": "Q50",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "status": "conflicting_components",
-      "note": "מרכיבי הרשימה שויכו לאפשרויות שונות (יועז הנדל: A; הכלכלה החדשה (זליכה): B); לא נוקד",
-      "sources": []
-    },
-    {
-      "question_id": "Q51",
+      "question_id": "X26",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "status": "conflicting_components",
@@ -11094,7 +6823,7 @@
       "sources": []
     },
     {
-      "question_id": "Q52",
+      "question_id": "X27",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "status": "conflicting_components",
@@ -11102,15 +6831,7 @@
       "sources": []
     },
     {
-      "question_id": "Q53",
-      "party_id": "reservists_economic",
-      "party": "המילואימניקים–הכלכלית",
-      "status": "conflicting_components",
-      "note": "מרכיבי הרשימה שויכו לאפשרויות שונות (הכלכלה החדשה (זליכה): A; יועז הנדל: C); לא נוקד",
-      "sources": []
-    },
-    {
-      "question_id": "Q55",
+      "question_id": "X30",
       "party_id": "reservists_economic",
       "party": "המילואימניקים–הכלכלית",
       "status": "conflicting_components",

@@ -44,6 +44,29 @@ UNSCORED = {"המחנה הממלכתי", "חרדים מודרניים"}
 # under separate names. Silence from one component is not agreement.
 MULTI_COMPONENT = {"reservists_economic": {"יועז הנדל", "הכלכלה החדשה (זליכה)"}}
 
+# Questions that ask about the same decision. From each cluster only the question
+# with the most party positions is kept (first listed wins a tie). Extra questions
+# are referred to by their stable id X01..X30 (from the id in the extra file).
+OVERLAP_CLUSTERS = [
+    ["Q01", "Q02", "Q20", "X01", "X23"],   # ליבה ומימון במוסדות חרדיים
+    ["Q05", "Q17", "X06"],                 # שכר ותגמול מורים
+    ["Q06", "X02"],                        # חוזים אישיים וארגוני מורים
+    ["Q09", "Q10", "Q18", "X03"],          # גיל רך
+    ["Q03", "X11"],                        # בחירת הורים ושוברים
+    ["Q04", "Q16", "X08", "X22"],          # ביזור ומשילות
+    ["Q14", "X26"],                        # בגרויות
+    ["Q24", "X14"],                        # אלימות ומשמעת
+    ["Q08", "X13"],                        # חינוך מיוחד
+    ["Q11", "Q12", "Q19", "X04", "X12"],   # זהות, ערכים ודמוקרטיה
+    ["Q13", "X07"],                        # חינוך ערבי
+    ["Q07", "Q23", "X28"],                 # צמצום פערים
+    ["Q15", "X25"],                        # טכנולוגיה ובינה מלאכותית
+]
+
+METHOD = ("עמדות המפלגות מבוססות על מצעים, דיווחים ושיוך עמדות לשאלות. "
+          "כשאין למפלגה עמדה בשאלה, השאלה לא נספרת לה ואינה נחשבת עמדה ניטרלית. "
+          "זהו כלי עזר לחשיבה, לא הכרעה או המלצת הצבעה.")
+
 # Topic families: each gets an icon and a color in the app.
 THEMES = {
     "core": "ליבה וזרמים",
@@ -96,7 +119,6 @@ def main():
     questions = [dict(q, section="core", theme=CORE_THEMES.get(q["id"])) for q in base["questions"]]
     matrix = list(base["position_matrix"])
     conflicts = list(base.get("unscored_conflicts", []))
-    next_num = len(questions) + 1
     seen_origin = set()
 
     for item in extra:
@@ -105,8 +127,7 @@ def main():
         seen_origin.add(item["id"])
         if len(item["options"]) != 4:
             fail(f"extra question {item['id']} must have 4 options")
-        qid = f"Q{next_num:02d}"
-        next_num += 1
+        qid = f"X{int(item['id']):02d}"
         questions.append({
             "id": qid,
             "type": "multiple_choice",
@@ -164,6 +185,27 @@ def main():
                     row["explanation"] = "; ".join(notes)
             matrix.append(row)
 
+    # Drop overlapping questions, keeping the best-covered one of each cluster.
+    coverage = {}
+    for r in matrix:
+        if r["status"] in ("documented", "estimated"):
+            coverage[r["question_id"]] = coverage.get(r["question_id"], 0) + 1
+    all_ids = {q["id"] for q in questions}
+    clustered, dropped = set(), []
+    for cluster in OVERLAP_CLUSTERS:
+        for qid in cluster:
+            if qid not in all_ids:
+                fail(f"overlap cluster names unknown question {qid}")
+            if qid in clustered:
+                fail(f"question {qid} is in two overlap clusters")
+            clustered.add(qid)
+        keep = max(cluster, key=lambda q: (coverage.get(q, 0), -cluster.index(q)))
+        dropped.append({"kept": keep, "dropped": [q for q in cluster if q != keep]})
+    drop_ids = {q for c in dropped for q in c["dropped"]}
+    questions = [q for q in questions if q["id"] not in drop_ids]
+    matrix = [r for r in matrix if r["question_id"] not in drop_ids]
+    conflicts = [c for c in conflicts if c["question_id"] not in drop_ids]
+
     # Integrity checks over the merged data.
     qmap = {q["id"]: q for q in questions}
     if len(qmap) != len(questions):
@@ -196,17 +238,14 @@ def main():
     out["position_matrix"] = matrix
     out["unscored_conflicts"] = conflicts
     meta = dict(base["meta"])
+    meta["method"] = METHOD
+    meta["dropped_overlaps"] = dropped
     meta["counts"] = {
         "questions": len(questions),
         "likert": sum(q["type"] == "likert" for q in questions),
         "multiple_choice": sum(q["type"] == "multiple_choice" for q in questions),
         "parties": len(parties),
-        "documented_party_question_positions": sum(r["status"] == "documented" for r in matrix),
-        "estimated_party_question_positions": sum(r["status"] == "estimated" for r in matrix),
-    }
-    meta["sections"] = {
-        "core": "שאלות עם עמדות מתועדות ומקורות",
-        "extra": "שאלות נוספות; השיוך למפלגות הוא הערכה ללא קישור למקור",
+        "party_question_positions": sum(r["status"] in ("documented", "estimated") for r in matrix),
     }
     meta["themes"] = THEMES
     meta["extra_mapping"] = {
@@ -216,10 +255,11 @@ def main():
     out["meta"] = meta
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     c = meta["counts"]
-    print(f"wrote {OUT.relative_to(ROOT)}: {c['questions']} questions, "
-          f"{c['documented_party_question_positions']} documented, "
-          f"{c['estimated_party_question_positions']} estimated, "
+    print(f"wrote {OUT.relative_to(ROOT)}: {c['questions']} questions "
+          f"({len(drop_ids)} overlapping dropped), {c['party_question_positions']} party positions, "
           f"{len(conflicts)} unscored conflicts")
+    for c_ in dropped:
+        print(f"  kept {c_['kept']}, dropped {', '.join(c_['dropped'])}")
 
 
 if __name__ == "__main__":

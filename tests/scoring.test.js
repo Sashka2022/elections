@@ -110,3 +110,15 @@ test("real merged data: every scored row is usable and percents stay in range", 
     for (const r of off) assert.equal(r.estimated, 0);
   }
 });
+
+test("merged data: overlapping questions were reduced to one per cluster", () => {
+  const d = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "compass.json"), "utf8"));
+  const ids = d.questions.map(q => q.id);
+  assert.equal(new Set(ids).size, ids.length);
+  for (const c of d.meta.dropped_overlaps) {
+    assert.ok(ids.includes(c.kept), c.kept);
+    for (const q of c.dropped) assert.ok(!ids.includes(q), q);
+  }
+  assert.ok(d.position_matrix.every(r => ids.includes(r.question_id)));
+  assert.equal(d.position_matrix.length, ids.length * d.parties.length);
+});
