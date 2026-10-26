@@ -27,26 +27,13 @@
     return positions.includes(a) ? 1 : 0;
   }
 
-  // Lower bound of the Wilson score interval for a match rate p over n question-weights.
-  function wilsonLower(p, n, z) {
-    if (!(n > 0)) return null;
-    if (!(z > 0)) return p;
-    const z2 = z * z;
-    const centre = p + z2 / (2 * n);
-    const margin = z * Math.sqrt(Math.max(0, p * (1 - p)) / n + z2 / (4 * n * n));
-    return Math.min(p, Math.max(0, (centre - margin) / (1 + z2 / n)));
-  }
-
   /**
-   * opts: { questions, parties, matrix, answers, important, includeEstimated, minCompared, confidence }
+   * opts: { questions, parties, matrix, answers, important, includeEstimated, minCompared }
    * Returns parties sorted for display.
    *   raw   - plain weighted match over the questions the party could be compared on
-   *   pct   - weighted score used for ranking: the Wilson lower bound of the match, with the
-   *           compared question-weight as the sample size. It equals raw when confidence is 0,
-   *           never exceeds raw, and grows with the number of compared questions, so parties
-   *           whose platform covers more of the user's answers get more weight and a party
-   *           compared on a lucky handful cannot top the list.
-   *   confidence - z value of the bound (default 1.28, a one-sided 90% bound).
+   *   pct   - score used for ranking: how much of all the user's answers the party adopts,
+   *           sum of matches / weight of every answered question. A question the party has no
+   *           position on counts as not adopted, so a broader platform weighs more.
    *   thin  - compared on fewer than minCompared questions (flag only, does not reorder)
    * pct and raw are null when nothing could be compared.
    */
@@ -56,7 +43,6 @@
     const important = opts.important || {};
     const includeEstimated = opts.includeEstimated !== false;
     const minCompared = opts.minCompared == null ? 5 : opts.minCompared;
-    const confidence = opts.confidence == null ? 1.28 : Math.max(0, Number(opts.confidence) || 0);
 
     const rows = new Map();
     for (const r of matrix) {
@@ -64,6 +50,8 @@
       if (!rows.has(k)) rows.set(k, r);
     }
     const answered = questions.filter(q => isValidAnswer(q, answers[q.id]));
+    const weightOf = q => (Number(q.weight) > 0 ? Number(q.weight) : 1) * (important[q.id] ? 2 : 1);
+    const answeredWeight = answered.reduce((a, q) => a + weightOf(q), 0);
 
     const results = parties.map(p => {
       let sum = 0, weight = 0, estimated = 0;
@@ -73,22 +61,18 @@
         const positions = rowPositions(q, row, includeEstimated);
         if (!positions) continue;
         const a = answers[q.id];
-        const base = Number(q.weight) > 0 ? Number(q.weight) : 1;
-        const w = base * (important[q.id] ? 2 : 1);
+        const w = weightOf(q);
         const s = questionScore(q, a, positions);
         sum += s * w;
         weight += w;
         if (row.status === "estimated") estimated++;
         items.push({ q, row, a, s, w, positions });
       }
-      return { party: p, sum, weight, raw: weight > 0 ? sum / weight : null, pct: null,
+      return { party: p, sum, weight, raw: weight > 0 ? sum / weight : null,
+               pct: weight > 0 ? sum / answeredWeight : null,
                compared: items.length, of: answered.length, estimated, items,
                thin: items.length < minCompared };
     });
-
-    for (const r of results) {
-      if (r.weight > 0) r.pct = wilsonLower(r.raw, r.weight, confidence);
-    }
 
     // Rounded percent decides order and shared ranks, so equal displayed numbers rank equally.
     const shown = r => (r.pct == null ? -1 : Math.round(r.pct * 100));
@@ -108,7 +92,7 @@
     return results;
   }
 
-  const api = { LIKERT_PARTY, isValidAnswer, rowPositions, questionScore, wilsonLower, scoreParties };
+  const api = { LIKERT_PARTY, isValidAnswer, rowPositions, questionScore, scoreParties };
   root.CompassScoring = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);

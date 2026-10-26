@@ -10,16 +10,16 @@ const M = id => ({ id, type: "multiple_choice", weight: 1, options: { A: "a", B:
 const row = (q, p, position, status = "documented") => ({ question_id: q, party_id: p, position, status });
 const P = [{ id: "p1", name: "אלף" }, { id: "p2", name: "בית" }];
 const run = (questions, matrix, answers, extra = {}) =>
-  S.scoreParties({ questions, parties: P, matrix, answers, minCompared: 1, confidence: 0, ...extra });
+  S.scoreParties({ questions, parties: P, matrix, answers, minCompared: 1, ...extra });
 const byId = (res, id) => res.find(r => r.party.id === id);
 
 test("likert distance maps support=5, oppose=1, qualified=4", () => {
   const qs = [L("Q1")];
   const m = [row("Q1", "p1", "support"), row("Q1", "p2", "qualified")];
-  assert.equal(byId(run(qs, m, { Q1: 5 }), "p1").pct, 1);
-  assert.equal(byId(run(qs, m, { Q1: 1 }), "p1").pct, 0);
-  assert.equal(byId(run(qs, m, { Q1: 3 }), "p1").pct, 0.5);
-  assert.equal(byId(run(qs, m, { Q1: 4 }), "p2").pct, 1);
+  assert.equal(byId(run(qs, m, { Q1: 5 }), "p1").raw, 1);
+  assert.equal(byId(run(qs, m, { Q1: 1 }), "p1").raw, 0);
+  assert.equal(byId(run(qs, m, { Q1: 3 }), "p1").raw, 0.5);
+  assert.equal(byId(run(qs, m, { Q1: 4 }), "p2").raw, 1);
 });
 
 test("unknown and conflicting rows are never counted", () => {
@@ -27,8 +27,8 @@ test("unknown and conflicting rows are never counted", () => {
   const m = [row("Q1", "p1", "A"), row("Q2", "p1", null, "unknown"), row("Q2", "p2", null, "conflicting_components")];
   const r = run(qs, m, { Q1: "A", Q2: "B" });
   assert.equal(byId(r, "p1").compared, 1);
-  assert.equal(byId(r, "p1").pct, 1);
-  assert.equal(byId(r, "p2").pct, null);
+  assert.equal(byId(r, "p1").raw, 1);
+  assert.equal(byId(r, "p2").raw, null);
 });
 
 test("skips and stale or invalid answers are ignored", () => {
@@ -37,7 +37,7 @@ test("skips and stale or invalid answers are ignored", () => {
   const r = byId(run(qs, m, { Q1: "skip", Q2: "Z", Q3: "A", Q9: "A" }), "p1");
   assert.equal(r.of, 1);
   assert.equal(r.compared, 1);
-  assert.equal(r.pct, 1);
+  assert.equal(r.raw, 1);
   assert.equal(byId(run(qs, m, { Q1: 7 }), "p1").compared, 0);
   assert.equal(byId(run(qs, m, { Q1: "5" }), "p1").compared, 0);
 });
@@ -46,15 +46,15 @@ test("important doubles the weight", () => {
   const qs = [M("Q1"), M("Q2")];
   const m = [row("Q1", "p1", "A"), row("Q2", "p1", "A")];
   const a = { Q1: "A", Q2: "B" };
-  assert.equal(byId(run(qs, m, a), "p1").pct, 0.5);
-  assert.ok(Math.abs(byId(run(qs, m, a, { important: { Q1: true } }), "p1").pct - 2 / 3) < 1e-12);
+  assert.equal(byId(run(qs, m, a), "p1").raw, 0.5);
+  assert.ok(Math.abs(byId(run(qs, m, a, { important: { Q1: true } }), "p1").raw - 2 / 3) < 1e-12);
 });
 
 test("multiple-choice row with several options matches any of them", () => {
   const qs = [M("Q1")];
   const m = [row("Q1", "p1", ["A", "D"], "estimated")];
-  assert.equal(byId(run(qs, m, { Q1: "D" }), "p1").pct, 1);
-  assert.equal(byId(run(qs, m, { Q1: "B" }), "p1").pct, 0);
+  assert.equal(byId(run(qs, m, { Q1: "D" }), "p1").raw, 1);
+  assert.equal(byId(run(qs, m, { Q1: "B" }), "p1").raw, 0);
 });
 
 test("estimated rows can be switched off", () => {
@@ -65,9 +65,9 @@ test("estimated rows can be switched off", () => {
   const off = byId(run(qs, m, a, { includeEstimated: false }), "p1");
   assert.equal(on.compared, 2);
   assert.equal(on.estimated, 1);
-  assert.equal(on.pct, 0.5);
+  assert.equal(on.raw, 0.5);
   assert.equal(off.compared, 1);
-  assert.equal(off.pct, 1);
+  assert.equal(off.raw, 1);
 });
 
 test("equal percents share a rank; parties with nothing compared go last unranked", () => {
@@ -81,36 +81,31 @@ test("equal percents share a rank; parties with nothing compared go last unranke
   assert.equal(r[3].pct, null);
 });
 
-test("confidence: a party matched on many questions outranks a perfect match on one", () => {
+test("ranking: share of all answers adopted, so broader platforms weigh more", () => {
   const parties = [{ id: "few", name: "א" }, { id: "many", name: "ב" }];
-  const qs = Array.from({ length: 10 }, (_, i) => M("Q" + i));
+  const qs = Array.from({ length: 30 }, (_, i) => M("Q" + i));
   const answers = Object.fromEntries(qs.map(q => [q.id, "A"]));
-  const m = [row("Q0", "few", "A")];
-  qs.forEach((q, i) => m.push(row(q.id, "many", i < 9 ? "A" : "B")));
+  const m = [];
+  qs.slice(0, 6).forEach((q, i) => m.push(row(q.id, "few", i < 3 ? "A" : "B")));     // 50% on 6
+  qs.slice(0, 25).forEach((q, i) => m.push(row(q.id, "many", i < 10 ? "A" : "B")));  // 40% on 25
   const r = S.scoreParties({ questions: qs, parties, matrix: m, answers });
   const few = r.find(x => x.party.id === "few"), many = r.find(x => x.party.id === "many");
-  assert.equal(few.raw, 1);
-  assert.equal(many.raw, 0.9);
+  assert.equal(few.raw, 0.5);
+  assert.equal(many.raw, 0.4);
+  assert.equal(few.pct, 3 / 30);
+  assert.equal(many.pct, 10 / 30);
   assert.equal(r[0].party.id, "many");
-  assert.ok(Math.abs(few.pct - S.wilsonLower(1, 1, 1.28)) < 1e-12);
 });
 
-test("confidence: zero gives the raw match; otherwise score <= raw and rises with coverage", () => {
-  assert.equal(S.wilsonLower(0.7, 4, 0), 0.7);
-  assert.equal(S.wilsonLower(0.7, 0, 1.28), null);
-  let prev = -1;
-  for (const n of [1, 2, 5, 10, 30, 100]) {
-    const v = S.wilsonLower(0.7, n, 1.28);
-    assert.ok(v <= 0.7 && v >= 0, `n=${n}`);
-    assert.ok(v > prev, `n=${n} should rise`);
-    prev = v;
-  }
-  assert.equal(S.wilsonLower(0, 5, 1.28), 0);
-  assert.ok(S.wilsonLower(1, 5, 1.28) < 1);
-  const qs = [M("Q1"), M("Q2"), M("Q3")];
-  const m = [row("Q1", "p1", "A"), row("Q2", "p1", "B"), row("Q3", "p1", "A"), row("Q1", "p2", "B")];
-  const a = { Q1: "A", Q2: "A", Q3: "A" };
-  for (const r of S.scoreParties({ questions: qs, parties: P, matrix: m, answers: a, confidence: 0 })) assert.equal(r.pct, r.raw);
+test("ranking: score never exceeds the direct match and skips do not count against anyone", () => {
+  const qs = [M("Q1"), M("Q2"), M("Q3"), M("Q4")];
+  const m = [row("Q1", "p1", "A"), row("Q2", "p1", "B"), row("Q1", "p2", "A")];
+  const r = S.scoreParties({ questions: qs, parties: P, matrix: m, answers: { Q1: "A", Q2: "A", Q3: "A", Q4: "skip" } });
+  for (const x of r) assert.ok(x.pct <= x.raw);
+  assert.equal(byId(r, "p1").pct, 1 / 3);
+  assert.equal(byId(r, "p2").pct, 1 / 3);
+  const imp = S.scoreParties({ questions: qs, parties: P, matrix: m, answers: { Q1: "A", Q2: "A", Q3: "A" }, important: { Q1: true } });
+  assert.equal(byId(imp, "p2").pct, 2 / 4);
 });
 
 test("duplicate matrix rows do not double count", () => {
