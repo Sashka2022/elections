@@ -1,5 +1,5 @@
 // Offline cache for the compass. Bump VERSION when files change.
-const VERSION = "compass-v6";
+const VERSION = "compass-v7";
 const CORE = ["./", "index.html", "manifest.webmanifest", "scoring.js", "data/compass.json", "data/party_logos.json", "icons/icon-192.png", "icons/icon-512.png", "icons/icon.svg"];
 
 self.addEventListener("install", e => {
