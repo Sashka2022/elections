@@ -1,5 +1,5 @@
 // Offline cache for the compass. Bump VERSION when files change.
-const VERSION = "compass-v20";
+const VERSION = "compass-v21";
 const CORE = ["./", "index.html", "manifest.webmanifest", "scoring.js", "data/compass.json", "data/party_logos.json", "data/education_minister_2026.json", "icons/icon-192.png", "icons/icon-512.png", "icons/icon.svg"];
 
 self.addEventListener("install", e => {
@@ -14,7 +14,8 @@ self.addEventListener("activate", e => {
 self.addEventListener("fetch", e => {
   if (e.request.method !== "GET") return;
   e.respondWith(
-    fetch(e.request)
+    // Revalidate with the server so a new deploy shows up right away, not after the HTTP cache expires.
+    fetch(e.request, new URL(e.request.url).origin === self.location.origin ? { cache: "no-cache" } : undefined)
       .then(res => {
         if (res.ok && (res.type === "basic" || res.type === "cors")) {
           const copy = res.clone();
