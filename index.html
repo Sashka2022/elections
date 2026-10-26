@@ -333,7 +333,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   }
 
   const view = document.getElementById("view");
-  let data = null, qIndex = {}, srcIndex = {}, logos = {}, eduByParty = {};
+  let data = null, qIndex = {}, srcIndex = {}, logos = {}, logoVersion = "", eduByParty = {};
   const Scoring = window.CompassScoring;
   let state = { screen: "intro", i: 0, answers: {}, important: {}, open: null };
 
@@ -470,7 +470,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   function logoHtml(p) {
     const mono = `<span class="plogo mono" aria-hidden="true">${esc(monogram(p.name))}</span>`;
     if (!logos[p.id]) return mono;
-    return `<span class="plogo"><img src="${esc(logos[p.id])}" alt="הלוגו של ${esc(p.name)}" loading="lazy" data-mono="${esc(monogram(p.name))}"></span>`;
+    return `<span class="plogo"><img src="${esc(logos[p.id] + (logoVersion ? "?v=" + encodeURIComponent(logoVersion) : ""))}" alt="הלוגו של ${esc(p.name)}" loading="lazy" data-mono="${esc(monogram(p.name))}"></span>`;
   }
 
   function bindLogoFallback() {
@@ -602,6 +602,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
       const optional = url => fetch(url).then(r => r.ok ? r.json() : {}).catch(() => ({}));
       return Promise.all([optional("data/party_logos.json"), optional("data/education_minister_2026.json")]).then(([l, e]) => {
         logos = (l && l.logos) || {};
+        logoVersion = (l && l.version) || "";
         eduByParty = {};
         for (const c of (e && e.candidates) || []) (eduByParty[c.party_id] = eduByParty[c.party_id] || []).push(c);
       });
