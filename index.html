@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>מצפן חינוך 2026</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#3b5778">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="מצפן חינוך">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;600&display=swap">
@@ -203,7 +209,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
       </svg>
       <span>מצפן חינוך</span>
     </button>
-    <span class="eyebrow" id="meta-line">בחירות לכנסת · 27.10.2026</span>
+    <div class="actions">
+      <span class="eyebrow" id="meta-line">בחירות לכנסת · 27.10.2026</span>
+      <button class="btn ghost" id="install" type="button" hidden>התקנה כאפליקציה</button>
+    </div>
   </header>
   <main id="view"><p class="status">טוען את השאלון…</p></main>
 </div>
@@ -441,6 +450,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
     else if (q.type !== "likert" && /^[a-dA-D]$/.test(e.key)) answer(e.key.toUpperCase());
   });
   document.getElementById("home").onclick = () => go("intro");
+
+  let installPrompt = null;
+  const installBtn = document.getElementById("install");
+  window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); installPrompt = e; installBtn.hidden = false; });
+  window.addEventListener("appinstalled", () => { installBtn.hidden = true; installPrompt = null; });
+  installBtn.onclick = () => { if (installPrompt) { installPrompt.prompt(); installPrompt = null; installBtn.hidden = true; } };
+  if ("serviceWorker" in navigator && location.protocol === "https:") {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  }
 
   fetch("data/education_compass_2026.json")
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
