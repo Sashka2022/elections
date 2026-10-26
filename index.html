@@ -134,6 +134,13 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .qcard .mc button[aria-pressed="true"] .letter { background: var(--th); color: var(--surface); }
 .ticks button.done[data-th] { opacity: .8; background: var(--th); }
 
+.party-strip { display: grid; gap: 10px; }
+.party-strip h2 { font-family: var(--font-body); font-size: .85rem; font-weight: 600; color: var(--muted); letter-spacing: .02em; }
+.logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 0; margin: 0; list-style: none; }
+.logos li { display: grid; }
+.logos .plogo { width: 5.5rem; height: 3.4rem; }
+@media (max-width: 560px) { .logos { gap: 6px; } .logos .plogo { width: 3.95rem; height: 2.7rem; padding: 3px; } }
+
 /* Intro */
 .intro { border-top: 0; background-image: linear-gradient(to left, var(--accent) 0 50%, var(--sea) 50% 80%, var(--sand) 80% 100%); background-size: 100% 4px; background-repeat: no-repeat; background-color: var(--surface); }
 .intro h1 { font-size: var(--step-3); }
@@ -212,7 +219,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   font-family: var(--font-display); font-weight: 700; font-size: .95rem; color: var(--accent); letter-spacing: .02em;
 }
 .plogo:has(img) { background: #fff; border-color: var(--line); }
-.plogo img { width: 100%; height: 100%; object-fit: contain; }
+.plogo img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; min-width: 0; min-height: 0; object-fit: contain; }
 .plogo.mono { background: var(--accent-soft); border-color: transparent; }
 .rank { grid-row: span 3; font-family: var(--font-display); font-size: var(--step-1); color: var(--sea); font-variant-numeric: tabular-nums; }
 .pname { font-weight: 600; font-size: var(--step-1); }
@@ -351,6 +358,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
           <li><b>${data.parties.length}</b><small>מפלגות</small></li>
           <li><b>${posCount}</b><small>עמדות מפלגה</small></li>
         </ul>
+        <section class="party-strip" aria-label="המפלגות במצפן">
+          <h2>המפלגות במצפן</h2>
+          <ul class="logos">${data.parties.map(p => `<li title="${esc(p.name)}">${logoHtml(p)}</li>`).join("")}</ul>
+        </section>
         <div class="topics">${Object.entries(m.themes || {}).map(([t, label]) =>
           `<div class="topic th-${t}">${icon(t)}<span>${esc(label)}</span><b>${data.questions.filter(q => q.theme === t).length}</b></div>`).join("")}</div>
         <p class="note">${esc(m.method)}</p>
@@ -360,6 +371,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
                  <button class="btn quiet" id="reset" type="button">להתחיל מחדש</button>` : ""}
         </div>
       </section>`;
+    bindLogoFallback();
     document.getElementById("start").onclick = () => go("quiz");
     if (n) {
       document.getElementById("to-results").onclick = () => go("results");
@@ -441,6 +453,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
     return `<span class="plogo"><img src="${esc(logos[p.id])}" alt="הלוגו של ${esc(p.name)}" loading="lazy" data-mono="${esc(monogram(p.name))}"></span>`;
   }
 
+  function bindLogoFallback() {
+    view.querySelectorAll(".plogo img").forEach(img => img.onerror = () => {
+      const span = img.parentElement;
+      span.className = "plogo mono";
+      span.textContent = img.dataset.mono;
+    });
+  }
+
   function userLabel(q, a) {
     return q.type === "likert" ? `${a} · ${data.response_scale.likert[a]}` : `${HEB[a] || a} · ${q.options[a]}`;
   }
@@ -516,11 +536,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
         ${conflicts ? `<details><summary>${conflictList.length} עמדות סותרות שלא נוקדו</summary><ul>${conflicts}</ul></details>` : ""}
         <p>${esc(data.meta.method)}</p>
       </section>`;
-    view.querySelectorAll(".plogo img").forEach(img => img.onerror = () => {
-      const span = img.parentElement;
-      span.className = "plogo mono";
-      span.textContent = img.dataset.mono;
-    });
+    bindLogoFallback();
     view.querySelectorAll("[data-party]").forEach(b => b.onclick = () => {
       state.open = state.open === b.dataset.party ? null : b.dataset.party;
       renderResults();
