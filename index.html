@@ -480,7 +480,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
     const results = scoreParties();
     const rows = results.map(r => {
       const thin = r.thin;
-      const pct = r.pct == null ? "—" : Math.round(r.pct * 100) + "%";
+      const pct = r.raw == null ? "—" : Math.round(r.raw * 100) + "%";
       const open = state.open === r.party.id;
       const details = open ? `<div class="details" id="d-${r.party.id}">` + (r.items.length ? r.items.map(it => {
         const src = srcIndex[it.row.source_id] || {};
@@ -500,9 +500,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
           <span class="rank">${r.rank == null ? "" : r.rank}</span>
           ${logoHtml(r.party)}
           <span class="pname">${esc(r.party.name)}</span>
-          <span class="pct" title="ציון משוקלל">${pct}</span>
-          <span class="bar"><i style="width:${r.pct == null ? 0 : Math.round(r.pct * 100)}%"></i></span>
-          <span class="coverage">${r.raw == null ? "" : `התאמה ישירה ${Math.round(r.raw * 100)}% · `}הושוו ${r.compared} מתוך ${r.of} תשובות${thin ? ` <span class="chip low">כיסוי נמוך</span>` : ""}</span>
+          <span class="pct" title="התאמה ישירה">${pct}</span>
+          <span class="bar"><i style="width:${r.raw == null ? 0 : Math.round(r.raw * 100)}%"></i></span>
+          <span class="coverage">${r.pct == null ? "" : `ציון משוקלל ${Math.round(r.pct * 100)} · `}הושוו ${r.compared} מתוך ${r.of} תשובות${thin ? ` <span class="chip low">כיסוי נמוך</span>` : ""}</span>
         </button>
         ${details}
       </div>`;
@@ -514,7 +514,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
       <section class="res-head">
         <span class="eyebrow">על סמך ${n} תשובות מתוך ${data.questions.length}</span>
         <h1>הקרבה שלכם למפלגות</h1>
-        <p class="note">המספר הגדול הוא ציון משוקלל: הוא מבוסס על ההתאמה בשאלות שבהן יש למפלגה עמדה, ונותן יותר משקל למפלגות שאפשר היה להשוות להן יותר תשובות. ההתאמה הישירה מופיעה מתחת. לחצו על מפלגה כדי לראות את ההשוואה ואת המקורות.</p>
+        <p class="note">המספר הגדול הוא ההתאמה הישירה בשאלות שבהן יש למפלגה עמדה. הסדר נקבע לפי ציון משוקלל שמופיע מתחת, ונותן יותר משקל למפלגות שאפשר היה להשוות להן יותר תשובות. לכן מפלגה עם אחוז גבוה שהושוותה במעט שאלות יכולה להופיע נמוך יותר. לחצו על מפלגה כדי לראות את ההשוואה ואת המקורות.</p>
       </section>
       <section class="ledger" aria-label="דירוג מפלגות">${rows}</section>
       <div class="actions">
