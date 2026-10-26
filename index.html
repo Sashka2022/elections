@@ -29,6 +29,16 @@
   --sea-soft: #d5e6e6;
   --sand: #b08a52;
   --sand-soft: #efe3cf;
+  /* topic tones */
+  --c-core: #3b5778;
+  --c-gov: #4c5a9a;
+  --c-teachers: #3f7f86;
+  --c-early: #a9813f;
+  --c-identity: #7a5c8e;
+  --c-equity: #5f7a45;
+  --c-learning: #2f78a8;
+  --c-safety: #a2614b;
+  --c-higher: #8a5468;
   --pos: #3f7a6e;
   --neg: #9a5260;
   --mid: #8a6d3b;
@@ -45,6 +55,8 @@
     --bg: #121a23; --surface: #1a2531; --ink: #e1e8ef; --muted: #93a3b5; --line: #2d3c4c;
     --accent: #8eabcb; --accent-soft: #233548; --accent-ink: #0f1720;
     --sea: #7fb7bb; --sea-soft: #1f3a3e; --sand: #d6b886; --sand-soft: #3a3226;
+    --c-core: #8eabcb; --c-gov: #9ca7e2; --c-teachers: #7fb7bb; --c-early: #d6b886; --c-identity: #bba0cf;
+    --c-equity: #a9c08a; --c-learning: #7fbde3; --c-safety: #dd9c86; --c-higher: #d39ab0;
     --pos: #7fb8aa; --neg: #d2909c; --mid: #cfae74;
     color-scheme: dark;
   }
@@ -53,6 +65,8 @@
   --bg: #121a23; --surface: #1a2531; --ink: #e1e8ef; --muted: #93a3b5; --line: #2d3c4c;
   --accent: #8eabcb; --accent-soft: #233548; --accent-ink: #0f1720;
     --sea: #7fb7bb; --sea-soft: #1f3a3e; --sand: #d6b886; --sand-soft: #3a3226;
+    --c-core: #8eabcb; --c-gov: #9ca7e2; --c-teachers: #7fb7bb; --c-early: #d6b886; --c-identity: #bba0cf;
+    --c-equity: #a9c08a; --c-learning: #7fbde3; --c-safety: #dd9c86; --c-higher: #d39ab0;
   --pos: #7fb8aa; --neg: #d2909c; --mid: #cfae74;
   color-scheme: dark;
 }
@@ -97,6 +111,29 @@ button { font: inherit; color: inherit; cursor: pointer; }
   min-width: 0;
 }
 
+/* Topics */
+.th-core { --th: var(--c-core); } .th-gov { --th: var(--c-gov); } .th-teachers { --th: var(--c-teachers); }
+.th-early { --th: var(--c-early); } .th-identity { --th: var(--c-identity); } .th-equity { --th: var(--c-equity); }
+.th-learning { --th: var(--c-learning); } .th-safety { --th: var(--c-safety); } .th-higher { --th: var(--c-higher); }
+.tchip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px 2px 8px; border-radius: 99px;
+  color: var(--th); background: color-mix(in srgb, var(--th) 14%, var(--surface));
+  font-size: .85rem; font-weight: 600; line-height: 1.7;
+}
+.ticon { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.topics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+@media (max-width: 560px) { .topic { flex-direction: column; align-items: flex-start; gap: 4px; font-size: .82rem; } .topic b { margin-inline-start: 0; } }
+.topic {
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px;
+  background: color-mix(in srgb, var(--th) 10%, var(--surface)); color: var(--ink); font-size: .9rem;
+}
+.topic .ticon { width: 24px; height: 24px; color: var(--th); }
+.topic b { margin-inline-start: auto; color: var(--th); font-variant-numeric: tabular-nums; }
+.qcard { border-top: 4px solid var(--th); }
+.qcard .mc .letter { background: color-mix(in srgb, var(--th) 16%, var(--surface)); color: var(--th); }
+.qcard .mc button[aria-pressed="true"] .letter { background: var(--th); color: var(--surface); }
+.ticks button.done[data-th] { opacity: .8; background: var(--th); }
+
 /* Intro */
 .intro { border-top: 0; background-image: linear-gradient(to left, var(--accent) 0 50%, var(--sea) 50% 80%, var(--sand) 80% 100%); background-size: 100% 4px; background-repeat: no-repeat; background-color: var(--surface); }
 .intro h1 { font-size: var(--step-3); }
@@ -125,7 +162,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* Progress */
 .progress { display: grid; gap: 8px; }
 .progress-top { display: flex; justify-content: space-between; gap: 12px; font-size: .9rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-.ticks { display: grid; grid-template-columns: repeat(25, 1fr); gap: 3px; }
+.ticks { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 3px; }
 .ticks button { height: 8px; border: 0; padding: 0; border-radius: 2px; background: var(--line); }
 .ticks button.done { background: var(--accent); opacity: .55; }
 .ticks button.skip { background: var(--sand); opacity: .6; }
@@ -184,6 +221,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .coverage { grid-column: 3 / 5; font-size: .85rem; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 .chip { display: inline-block; font-size: .78rem; font-weight: 600; padding: 1px 8px; border-radius: 99px; border: 1px solid currentColor; line-height: 1.6; }
 .chip.low { color: var(--sand); background: var(--sand-soft); border-color: transparent; }
+.chip.est { color: var(--sea); background: var(--sea-soft); border-color: transparent; }
+.q-topic .part { font-size: .78rem; font-weight: 600; color: var(--sea); background: var(--sea-soft); border-radius: 99px; padding: 0 8px; }
+.res-tools { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; justify-content: space-between; }
+.method details summary { cursor: pointer; color: var(--ink); }
 .row.thin .pct, .row.thin .pname { color: var(--muted); }
 .details { padding: 4px 18px 18px; display: grid; gap: 10px; }
 .item { display: grid; gap: 6px; padding: 12px 14px; background: var(--bg); border-radius: 8px; min-width: 0; }
@@ -234,32 +275,52 @@ button { font: inherit; color: inherit; cursor: pointer; }
   </header>
   <main id="view"><p class="status">טוען את השאלון…</p></main>
 </div>
+<script src="scoring.js"></script>
 <script>
 (function () {
   "use strict";
   const STORE = "edu-compass-2026";
-  const LIKERT_PARTY = { support: 5, oppose: 1, qualified: 4 };
   const STANCE_LABEL = { support: "תומכת", oppose: "מתנגדת", qualified: "תמיכה מסויגת" };
   const GRADE_LABEL = { A: "מצע רשמי", B: "דיווח או מקור משני", C: "מסמך קודם" };
   const MIN_COMPARED = 5;
   const HEB = { A: "א", B: "ב", C: "ג", D: "ד" };
   const FROM_HEB = { "א": "A", "ב": "B", "ג": "C", "ד": "D" };
 
+  const ICONS = {
+    core: '<path d="M4 5c3-1 5.5-1 8 1v13c-2.5-2-5-2-8-1zM20 5c-3-1-5.5-1-8 1v13c2.5-2 5-2 8-1z"/>',
+    gov: '<path d="M3 21h18M5 21v-9M9.5 21v-9M14.5 21v-9M19 21v-9M2.5 10 12 4l9.5 6z"/>',
+    teachers: '<circle cx="8" cy="8" r="3"/><path d="M2.5 21v-1.5a5.5 5.5 0 0 1 11 0V21M13 4h8v8h-5M15 8h3"/>',
+    early: '<rect x="3.5" y="13" width="7.5" height="7.5" rx="1"/><rect x="13" y="13" width="7.5" height="7.5" rx="1"/><rect x="8.2" y="3.5" width="7.5" height="7.5" rx="1"/>',
+    identity: '<path d="M12 3.5 14.5 9l6 .6-4.5 4 1.3 5.9L12 16.5l-5.3 3 1.3-5.9-4.5-4 6-.6z"/>',
+    equity: '<path d="M12 3.5v17M7 20.5h10M4.5 7h15M6.5 7 3.5 13.5a3 3 0 0 0 6 0zM17.5 7l-3 6.5a3 3 0 0 0 6 0z"/>',
+    learning: '<path d="M9 17.5h6M10 20.5h4M12 3a6 6 0 0 0-3.8 10.6c.6.5.8 1.2.8 1.9h6c0-.7.2-1.4.8-1.9A6 6 0 0 0 12 3z"/>',
+    safety: '<path d="M12 3 19.5 6v5.5c0 4.6-3.2 7.7-7.5 9-4.3-1.3-7.5-4.4-7.5-9V6z"/><path d="m9 12 2 2 4-4"/>',
+    higher: '<path d="M2 9.5 12 5l10 4.5L12 14zM6.5 11.5V16c3 2 8 2 11 0v-4.5M22 9.5V15"/>',
+  };
+  function icon(theme) {
+    return `<svg class="ticon" viewBox="0 0 24 24" aria-hidden="true">${ICONS[theme] || ICONS.core}</svg>`;
+  }
+  function themeChip(q) {
+    const t = q.theme || "core";
+    return `<span class="tchip th-${t}">${icon(t)}${esc(q.topic)}</span>`;
+  }
+
   const view = document.getElementById("view");
   let data = null, qIndex = {}, srcIndex = {}, logos = {};
-  let state = { screen: "intro", i: 0, answers: {}, important: {}, open: null };
+  const Scoring = window.CompassScoring;
+  let state = { screen: "intro", i: 0, answers: {}, important: {}, includeEstimated: true, open: null };
 
   function load() {
-    try { const s = JSON.parse(localStorage.getItem(STORE) || "null"); if (s && s.answers) state = Object.assign(state, s, { open: null }); } catch (e) {}
+    try { const s = JSON.parse(localStorage.getItem(STORE) || "null"); if (s && s.answers && typeof s.answers === "object") state = Object.assign(state, s, { open: null }); } catch (e) {}
   }
   function save() {
-    try { localStorage.setItem(STORE, JSON.stringify({ screen: state.screen, i: state.i, answers: state.answers, important: state.important })); } catch (e) {}
+    try { localStorage.setItem(STORE, JSON.stringify({ screen: state.screen, i: state.i, answers: state.answers, important: state.important, includeEstimated: state.includeEstimated })); } catch (e) {}
   }
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   }
   function answeredCount() {
-    return Object.values(state.answers).filter(a => a != null && a !== "skip").length;
+    return data.questions.filter(q => Scoring.isValidAnswer(q, state.answers[q.id])).length;
   }
 
   function go(screen, i) {
@@ -279,17 +340,21 @@ button { font: inherit; color: inherit; cursor: pointer; }
   function renderIntro() {
     const m = data.meta, n = answeredCount();
     const docCount = data.position_matrix.filter(r => r.status === "documented").length;
+    const estCount = data.position_matrix.filter(r => r.status === "estimated").length;
     view.innerHTML = `
       <section class="card intro">
         <span class="eyebrow">טיוטה · גרסה ${esc(m.version.replace("draft_", ""))}</span>
         <h1>איפה אתם עומדים במדיניות החינוך?</h1>
-        <p class="lede">25 שאלות על ליבה, מימון, מורים, גיל רך וזהות. בסוף תראו אילו מפלגות קרובות לעמדות שלכם, ועל אילו מקורות מבוססת כל השוואה.</p>
+        <p class="lede">${data.questions.length} שאלות על ליבה, מימון, מורים, גיל רך וזהות. בסוף תראו אילו מפלגות קרובות לעמדות שלכם, ועל אילו מקורות מבוססת כל השוואה.</p>
         <ul class="facts">
           <li><b>${m.counts.likert}</b><small>שאלות הסכמה (1 עד 5)</small></li>
           <li><b>${m.counts.multiple_choice}</b><small>שאלות בחירה</small></li>
           <li><b>${data.parties.length}</b><small>מפלגות</small></li>
           <li><b>${docCount}</b><small>עמדות מתועדות עם מקור</small></li>
+          <li><b>${estCount}</b><small>עמדות בהערכה ללא מקור</small></li>
         </ul>
+        <div class="topics">${Object.entries(m.themes || {}).map(([t, label]) =>
+          `<div class="topic th-${t}">${icon(t)}<span>${esc(label)}</span><b>${data.questions.filter(q => q.theme === t).length}</b></div>`).join("")}</div>
         <p class="note">${esc(m.method)}</p>
         <div class="actions">
           <button class="btn" id="start" type="button">${n ? "להמשיך מהשאלה " + (state.i + 1) : "להתחיל"}</button>
@@ -310,7 +375,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
     const ticks = qs.map((x, k) => {
       const v = state.answers[x.id];
       const cls = k === state.i ? "current" : v === "skip" ? "skip" : v != null ? "done" : "";
-      return `<button type="button" class="${cls}" data-go="${k}" aria-label="שאלה ${k + 1}: ${esc(x.topic)}"></button>`;
+      return `<button type="button" class="${cls} th-${x.theme || "core"}" ${cls === "done" ? "data-th" : ""} data-go="${k}" aria-label="שאלה ${k + 1}: ${esc(x.topic)}"></button>`;
     }).join("");
     let choices;
     if (q.type === "likert") {
@@ -323,12 +388,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
         `</div>`;
     }
     view.innerHTML = `
-      <section class="card">
+      <section class="card qcard th-${q.theme || "core"}">
         <div class="progress">
           <div class="progress-top"><span>שאלה ${state.i + 1} מתוך ${qs.length}</span><span>${answeredCount()} תשובות</span></div>
-          <div class="ticks">${ticks}</div>
+          <div class="ticks" style="grid-template-columns: repeat(${qs.length}, 1fr)">${ticks}</div>
         </div>
-        <div class="q-topic"><span class="id">${esc(q.id)}</span><span class="tag">${esc(q.topic)}</span></div>
+        <div class="q-topic"><span class="id">${esc(q.id)}</span>${themeChip(q)}${q.section === "extra" ? `<span class="part">שאלה נוספת · שיוך המפלגות בהערכה</span>` : ""}</div>
         <h2 class="q-text">${esc(q.text)}</h2>
         ${choices}
         <div class="q-foot">
@@ -360,27 +425,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
   }
 
   function scoreParties() {
-    const userAnswered = data.questions.filter(q => { const a = state.answers[q.id]; return a != null && a !== "skip"; });
-    return data.parties.map(p => {
-      let sum = 0, weight = 0;
-      const items = [];
-      for (const q of userAnswered) {
-        const row = data.position_matrix.find(r => r.question_id === q.id && r.party_id === p.id);
-        if (!row || row.status !== "documented" || row.position == null) continue;
-        const a = state.answers[q.id];
-        const w = (q.weight || 1) * (state.important[q.id] ? 2 : 1);
-        const s = q.type === "likert"
-          ? 1 - Math.abs(a - LIKERT_PARTY[row.position]) / 4
-          : (a === row.position ? 1 : 0);
-        sum += s * w; weight += w;
-        items.push({ q, row, a, s });
-      }
-      return { party: p, pct: weight ? sum / weight : null, compared: items.length, of: userAnswered.length, items };
-    }).sort((x, y) => {
-      const xt = x.compared < MIN_COMPARED, yt = y.compared < MIN_COMPARED;
-      if (xt !== yt) return xt ? 1 : -1;
-      if (x.pct == null || y.pct == null) return (y.pct == null) - (x.pct == null) || y.compared - x.compared;
-      return y.pct - x.pct || y.compared - x.compared;
+    return Scoring.scoreParties({
+      questions: data.questions, parties: data.parties, matrix: data.position_matrix,
+      answers: state.answers, important: state.important,
+      includeEstimated: state.includeEstimated, minCompared: MIN_COMPARED,
     });
   }
 
@@ -400,7 +448,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
   }
   function partyLabel(q, row) {
     if (q.type === "likert") return `<span class="stance-${row.position}">${STANCE_LABEL[row.position]}</span>`;
-    return `${esc(HEB[row.position] || row.position)} · ${esc(q.options[row.position])}`;
+    const list = Array.isArray(row.position) ? row.position : [row.position];
+    return list.map(k => `${esc(HEB[k] || k)} · ${esc(q.options[k])}`).join("<br>או ");
   }
 
   function renderResults() {
@@ -411,44 +460,49 @@ button { font: inherit; color: inherit; cursor: pointer; }
       return;
     }
     const results = scoreParties();
-    let rank = 0;
     const rows = results.map(r => {
-      const thin = r.compared < MIN_COMPARED;
-      if (!thin && r.pct != null) rank++;
+      const thin = r.thin;
       const pct = r.pct == null ? "—" : Math.round(r.pct * 100) + "%";
       const open = state.open === r.party.id;
       const details = open ? `<div class="details" id="d-${r.party.id}">` + (r.items.length ? r.items.map(it => {
         const src = srcIndex[it.row.source_id] || {};
         return `<div class="item">
-          <div class="item-top"><span>${esc(it.q.id)} · ${esc(it.q.topic)}</span><span class="match">התאמה ${Math.round(it.s * 100)}%</span></div>
+          <div class="item-top"><span>${esc(it.q.id)} ${themeChip(it.q)}</span><span class="match">התאמה ${Math.round(it.s * 100)}%</span></div>
           <p class="item-q">${esc(it.q.text)}</p>
           <dl class="cmp">
             <div><dt>התשובה שלכם</dt><dd>${esc(userLabel(it.q, it.a))}</dd></div>
             <div><dt>עמדת המפלגה</dt><dd>${partyLabel(it.q, it.row)}</dd></div>
           </dl>
           ${it.row.explanation ? `<p class="src">${esc(it.row.explanation)}</p>` : ""}
-          <p class="src">מקור ${esc(it.row.source_id)}: <a href="${esc(it.row.source_url)}" target="_blank" rel="noopener">${esc(src.name || it.row.source_url)}</a> · דרגה ${esc(it.row.evidence_grade)} (${GRADE_LABEL[it.row.evidence_grade] || ""})</p>
+          ${it.row.status === "estimated"
+            ? `<p class="src"><span class="chip est">הערכה ללא מקור</span></p>`
+            : `<p class="src">מקור ${esc(it.row.source_id)}: <a href="${esc(it.row.source_url)}" target="_blank" rel="noopener">${esc(src.name || it.row.source_url)}</a> · דרגה ${esc(it.row.evidence_grade)} (${GRADE_LABEL[it.row.evidence_grade] || ""})</p>`}
         </div>`;
-      }).join("") : `<p class="src">אין עמדה מתועדת של המפלגה באף אחת מהשאלות שעניתם עליהן.</p>`) + `</div>` : "";
+      }).join("") : `<p class="src">אין למפלגה עמדה באף אחת מהשאלות שעניתם עליהן.</p>`) + `</div>` : "";
       return `<div class="row ${thin ? "thin" : ""}">
         <button type="button" data-party="${r.party.id}" aria-expanded="${open}">
-          <span class="rank">${thin || r.pct == null ? "" : rank}</span>
+          <span class="rank">${r.rank == null ? "" : r.rank}</span>
           ${logoHtml(r.party)}
           <span class="pname">${esc(r.party.name)}</span>
           <span class="pct">${pct}</span>
           <span class="bar"><i style="width:${r.pct == null ? 0 : Math.round(r.pct * 100)}%"></i></span>
-          <span class="coverage">הושוו ${r.compared} מתוך ${r.of} תשובות${thin ? ` <span class="chip low">כיסוי נמוך</span>` : ""}</span>
+          <span class="coverage">הושוו ${r.compared} מתוך ${r.of} תשובות${r.estimated ? ` · ${r.estimated} מהן בהערכה` : ""}${thin ? ` <span class="chip low">כיסוי נמוך</span>` : ""}</span>
         </button>
         ${details}
       </div>`;
     }).join("");
-    const conflicts = (data.unscored_conflicts || []).map(c => `<li>${esc(c.party)}, ${esc(c.question_id)}: ${esc(c.note)}</li>`).join("");
+    const conflictList = data.unscored_conflicts || [];
+    const conflicts = conflictList.map(c => `<li>${esc(c.party)}, ${esc(c.question_id)}: ${esc(c.note)}</li>`).join("");
+    const unscored = ((data.meta.extra_mapping || {}).unscored || []).join(", ");
     view.innerHTML = `
       <section class="res-head">
         <span class="eyebrow">על סמך ${n} תשובות מתוך ${data.questions.length}</span>
         <h1>הקרבה שלכם למפלגות</h1>
-        <p class="note">אחוז ההתאמה מחושב רק בשאלות שבהן יש למפלגה עמדה מתועדת עם מקור. מפלגות שהושוו בפחות מ־${MIN_COMPARED} שאלות מופיעות בסוף הרשימה, כי ההשוואה שלהן חלקית מדי. לחצו על מפלגה כדי לראות את ההשוואה ואת המקורות.</p>
+        <p class="note">אחוז ההתאמה מחושב רק בשאלות שבהן יש למפלגה עמדה: מתועדת עם מקור, או בהערכה ללא מקור אם המתג למטה פועל. מפלגות שהושוו בפחות מ־${MIN_COMPARED} שאלות מופיעות בסוף הרשימה, כי ההשוואה שלהן חלקית מדי. לחצו על מפלגה כדי לראות את ההשוואה ואת המקורות.</p>
       </section>
+      <div class="res-tools">
+        <label class="toggle"><input type="checkbox" id="inc-est" ${state.includeEstimated ? "checked" : ""}> לכלול עמדות בהערכה ללא מקור (שאלות נוספות)</label>
+      </div>
       <section class="ledger" aria-label="דירוג מפלגות">${rows}</section>
       <div class="actions">
         <button class="btn ghost" id="edit" type="button">לשנות תשובות</button>
@@ -461,8 +515,11 @@ button { font: inherit; color: inherit; cursor: pointer; }
           <li>בשאלות בחירה, בחירה זהה שווה התאמה מלאה ובחירה אחרת שווה אפס.</li>
           <li>כשאין למפלגה עמדה מתועדת, השאלה לא נספרת לה. היעדר מידע אינו נחשב עמדה ניטרלית.</li>
           <li>נושא שסימנתם כחשוב מקבל משקל כפול.</li>
-          ${conflicts ? `<li>לא נוקדו עמדות סותרות בין מרכיבי רשימה: <ul>${conflicts}</ul></li>` : ""}
+          <li>בשאלות הנוספות, השיוך למפלגות הוא הערכה ללא קישור למקור. כשאפשרות שויכה לכמה מפלגות, כל אחת מהן מקבלת אותה. כשמפלגה שויכה לכמה אפשרויות, בחירה בכל אחת מהן נחשבת התאמה.</li>
+          <li>כשמרכיבים של אותה רשימה שויכו לאפשרויות שונות, השאלה לא נספרת לרשימה. כשרק מרכיב אחד שויך, נעשה שימוש בעמדה שלו, וזה מצוין בפירוט.</li>
+          ${unscored ? `<li>שמות שאינם מתמודדים ברשימה נפרדת לא נוקדו: ${esc(unscored)}.</li>` : ""}
         </ul>
+        ${conflicts ? `<details><summary>${conflictList.length} עמדות סותרות שלא נוקדו</summary><ul>${conflicts}</ul></details>` : ""}
         <p>${esc(data.meta.method)}</p>
       </section>`;
     view.querySelectorAll(".plogo img").forEach(img => img.onerror = () => {
@@ -476,6 +533,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
       const el = document.querySelector(`[data-party="${b.dataset.party}"]`);
       if (el) el.focus();
     });
+    document.getElementById("inc-est").onchange = e => { state.includeEstimated = e.target.checked; save(); renderResults(); };
     document.getElementById("edit").onclick = () => go("quiz", 0);
     document.getElementById("reset").onclick = () => { state.answers = {}; state.important = {}; go("intro", 0); };
   }
@@ -497,7 +555,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
     navigator.serviceWorker.register("sw.js").catch(() => {});
   }
 
-  fetch("data/education_compass_2026.json")
+  fetch("data/compass.json")
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(d => {
       data = d;
@@ -513,7 +571,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
       render();
     })
     .catch(() => {
-      view.innerHTML = `<p class="status">לא הצלחנו לטעון את קובץ השאלון (data/education_compass_2026.json). פתחו את הדף דרך שרת אינטרנט ולא ישירות מהקובץ, ונסו שוב.</p>`;
+      view.innerHTML = `<p class="status">לא הצלחנו לטעון את קובץ השאלון (data/compass.json). פתחו את הדף דרך שרת אינטרנט ולא ישירות מהקובץ, ונסו שוב.</p>`;
     });
 })();
 </script>
