@@ -10,7 +10,7 @@ const M = id => ({ id, type: "multiple_choice", weight: 1, options: { A: "a", B:
 const row = (q, p, position, status = "documented") => ({ question_id: q, party_id: p, position, status });
 const P = [{ id: "p1", name: "אלף" }, { id: "p2", name: "בית" }];
 const run = (questions, matrix, answers, extra = {}) =>
-  S.scoreParties({ questions, parties: P, matrix, answers, minCompared: 1, ...extra });
+  S.scoreParties({ questions, parties: P, matrix, answers, minCompared: 1, confidence: 0, ...extra });
 const byId = (res, id) => res.find(r => r.party.id === id);
 
 test("likert distance maps support=5, oppose=1, qualified=4", () => {
@@ -70,14 +70,47 @@ test("estimated rows can be switched off", () => {
   assert.equal(off.pct, 1);
 });
 
-test("thin coverage goes last and gets no rank; equal percents share a rank", () => {
-  const parties = [{ id: "a", name: "א" }, { id: "b", name: "ב" }, { id: "c", name: "ג" }];
+test("equal percents share a rank; parties with nothing compared go last unranked", () => {
+  const parties = [{ id: "a", name: "א" }, { id: "b", name: "ב" }, { id: "c", name: "ג" }, { id: "d", name: "ד" }];
   const qs = [M("Q1"), M("Q2")];
-  const m = [row("Q1", "a", "A"), row("Q2", "a", "A"), row("Q1", "b", "A"), row("Q2", "b", "A"), row("Q1", "c", "A")];
+  const m = [row("Q1", "a", "A"), row("Q2", "a", "A"), row("Q1", "b", "A"), row("Q2", "b", "A"), row("Q1", "c", "B")];
   const r = S.scoreParties({ questions: qs, parties, matrix: m, answers: { Q1: "A", Q2: "A" }, minCompared: 2 });
-  assert.deepEqual(r.map(x => x.party.id), ["a", "b", "c"]);
-  assert.deepEqual(r.map(x => x.rank), [1, 1, null]);
+  assert.deepEqual(r.map(x => x.party.id), ["a", "b", "c", "d"]);
+  assert.deepEqual(r.map(x => x.rank), [1, 1, 3, null]);
   assert.equal(r[2].thin, true);
+  assert.equal(r[3].pct, null);
+});
+
+test("confidence: a party matched on many questions outranks a perfect match on one", () => {
+  const parties = [{ id: "few", name: "א" }, { id: "many", name: "ב" }];
+  const qs = Array.from({ length: 10 }, (_, i) => M("Q" + i));
+  const answers = Object.fromEntries(qs.map(q => [q.id, "A"]));
+  const m = [row("Q0", "few", "A")];
+  qs.forEach((q, i) => m.push(row(q.id, "many", i < 9 ? "A" : "B")));
+  const r = S.scoreParties({ questions: qs, parties, matrix: m, answers });
+  const few = r.find(x => x.party.id === "few"), many = r.find(x => x.party.id === "many");
+  assert.equal(few.raw, 1);
+  assert.equal(many.raw, 0.9);
+  assert.equal(r[0].party.id, "many");
+  assert.ok(Math.abs(few.pct - S.wilsonLower(1, 1, 1.28)) < 1e-12);
+});
+
+test("confidence: zero gives the raw match; otherwise score <= raw and rises with coverage", () => {
+  assert.equal(S.wilsonLower(0.7, 4, 0), 0.7);
+  assert.equal(S.wilsonLower(0.7, 0, 1.28), null);
+  let prev = -1;
+  for (const n of [1, 2, 5, 10, 30, 100]) {
+    const v = S.wilsonLower(0.7, n, 1.28);
+    assert.ok(v <= 0.7 && v >= 0, `n=${n}`);
+    assert.ok(v > prev, `n=${n} should rise`);
+    prev = v;
+  }
+  assert.equal(S.wilsonLower(0, 5, 1.28), 0);
+  assert.ok(S.wilsonLower(1, 5, 1.28) < 1);
+  const qs = [M("Q1"), M("Q2"), M("Q3")];
+  const m = [row("Q1", "p1", "A"), row("Q2", "p1", "B"), row("Q3", "p1", "A"), row("Q1", "p2", "B")];
+  const a = { Q1: "A", Q2: "A", Q3: "A" };
+  for (const r of S.scoreParties({ questions: qs, parties: P, matrix: m, answers: a, confidence: 0 })) assert.equal(r.pct, r.raw);
 });
 
 test("duplicate matrix rows do not double count", () => {
@@ -104,6 +137,7 @@ test("real merged data: every scored row is usable and percents stay in range", 
     assert.equal(res.length, d.parties.length);
     for (const r of res) {
       assert.ok(r.pct === null || (r.pct >= 0 && r.pct <= 1));
+      assert.ok(r.raw === null || (r.raw >= 0 && r.raw <= 1));
       assert.equal(r.of, d.questions.length);
     }
     const off = S.scoreParties({ questions: d.questions, parties: d.parties, matrix: d.position_matrix, answers, includeEstimated: false });

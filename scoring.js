@@ -27,10 +27,28 @@
     return positions.includes(a) ? 1 : 0;
   }
 
+  // Lower bound of the Wilson score interval for a match rate p over n question-weights.
+  function wilsonLower(p, n, z) {
+    if (!(n > 0)) return null;
+    if (!(z > 0)) return p;
+    const z2 = z * z;
+    const centre = p + z2 / (2 * n);
+    const margin = z * Math.sqrt(Math.max(0, p * (1 - p)) / n + z2 / (4 * n * n));
+    return Math.min(p, Math.max(0, (centre - margin) / (1 + z2 / n)));
+  }
+
   /**
-   * opts: { questions, parties, matrix, answers, important, includeEstimated, minCompared }
-   * Returns parties sorted for display. pct is null when nothing could be compared.
-   * Parties compared on fewer than minCompared questions are flagged thin and listed last.
+   * opts: { questions, parties, matrix, answers, important, includeEstimated, minCompared, confidence }
+   * Returns parties sorted for display.
+   *   raw   - plain weighted match over the questions the party could be compared on
+   *   pct   - weighted score used for ranking: the Wilson lower bound of the match, with the
+   *           compared question-weight as the sample size. It equals raw when confidence is 0,
+   *           never exceeds raw, and grows with the number of compared questions, so parties
+   *           whose platform covers more of the user's answers get more weight and a party
+   *           compared on a lucky handful cannot top the list.
+   *   confidence - z value of the bound (default 1.28, a one-sided 90% bound).
+   *   thin  - compared on fewer than minCompared questions (flag only, does not reorder)
+   * pct and raw are null when nothing could be compared.
    */
   function scoreParties(opts) {
     const { questions, parties, matrix } = opts;
@@ -38,6 +56,7 @@
     const important = opts.important || {};
     const includeEstimated = opts.includeEstimated !== false;
     const minCompared = opts.minCompared == null ? 5 : opts.minCompared;
+    const confidence = opts.confidence == null ? 1.28 : Math.max(0, Number(opts.confidence) || 0);
 
     const rows = new Map();
     for (const r of matrix) {
@@ -62,22 +81,26 @@
         if (row.status === "estimated") estimated++;
         items.push({ q, row, a, s, w, positions });
       }
-      const pct = weight > 0 ? sum / weight : null;
-      return { party: p, pct, compared: items.length, of: answered.length, estimated, items,
+      return { party: p, sum, weight, raw: weight > 0 ? sum / weight : null, pct: null,
+               compared: items.length, of: answered.length, estimated, items,
                thin: items.length < minCompared };
     });
+
+    for (const r of results) {
+      if (r.weight > 0) r.pct = wilsonLower(r.raw, r.weight, confidence);
+    }
 
     // Rounded percent decides order and shared ranks, so equal displayed numbers rank equally.
     const shown = r => (r.pct == null ? -1 : Math.round(r.pct * 100));
     results.sort((x, y) =>
-      (x.thin - y.thin) ||
+      ((x.pct == null) - (y.pct == null)) ||
       (shown(y) - shown(x)) ||
       (y.compared - x.compared) ||
       x.party.name.localeCompare(y.party.name, "he"));
 
     let prev = null, rank = 0;
     results.forEach((r, i) => {
-      if (r.thin || r.pct == null) { r.rank = null; return; }
+      if (r.pct == null) { r.rank = null; return; }
       if (prev === null || shown(r) !== prev) rank = i + 1;
       prev = shown(r);
       r.rank = rank;
@@ -85,7 +108,7 @@
     return results;
   }
 
-  const api = { LIKERT_PARTY, isValidAnswer, rowPositions, questionScore, scoreParties };
+  const api = { LIKERT_PARTY, isValidAnswer, rowPositions, questionScore, wilsonLower, scoreParties };
   root.CompassScoring = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);
