@@ -1,6 +1,6 @@
 // Offline cache for the compass. Bump VERSION when files change.
-const VERSION = "compass-v11";
-const CORE = ["./", "index.html", "manifest.webmanifest", "scoring.js", "data/compass.json", "data/party_logos.json", "icons/icon-192.png", "icons/icon-512.png", "icons/icon.svg"];
+const VERSION = "compass-v13";
+const CORE = ["./", "index.html", "manifest.webmanifest", "scoring.js", "data/compass.json", "data/party_logos.json", "data/education_minister_2026.json", "icons/icon-192.png", "icons/icon-512.png", "icons/icon.svg"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
